@@ -19,44 +19,38 @@ $usuario =  $_SESSION['usuario'];
 <body>
 
 <div class="container">
-	<div id="top-bar"> <div id="bar-text">Sistema de Inscripciones -Administrador- (Docentes)</div><div id="botonsalir">Bienvenido,  <?php echo $usuario->nombre; ?>   <a href="#" title="Editar mis datos" class="Bca">  Editar  </a>    <a href="../login/logout.php" title="Salir" class="BcaE">  Salir  </a></div></div>				
+	<div id="top-bar"> <div id="bar-text">Sistema de Inscripciones -Administrador- (Brigadas)</div><div id="botonsalir">Bienvenido,  <?php echo $usuario->nombre; ?>   <a href="#" title="Editar mis datos" class="Bca">  Editar  </a>    <a href="../login/logout.php" title="Salir" class="BcaE">  Salir  </a></div></div>				
 	<div class="content">
 		<div id="divnav"> 
 			<ul id="nav">
 				<li><a href="admin_docentes.php">Docentes</a></li>
 				<li><a href="admin_alumnos.php">Alumnos</a></li>
 				<li><a href="admin_brigadas.php">Brigadas</a></li>
-				<li><a href="admin_oficial.php">Brigadas Oficiales</a></li>
+				<li><a href="">Brigadas Oficiales</a></li>
 				<li><a href="">Avisos</a></li>			
 			</ul>
 		</div>
 		
 				<div id='cssmenu'>
 					<ul>
-			  			 <li class="active"><a href='admin_docentes.php'><span>Docentes </span></a></li>
-			  			 <li><a href= 'admin_docentes_new.php'><span>Nuevo Docente</span></a></li>
-			  			 <li><a href='#'><span>About</span></a></li>
+			  			 <li class="active"><a href='admin_oficial.php'><span>Brigadas Oficiales</span></a></li>
+			  			 <li><a href='admin_oficial_new.php'><span>Nueva Brigada Oficial</span></a></li>
 						   <li class='last'><a href='#'><span>Contact</span></a></li>
 					</ul>
 				</div>
 		
 		<div id="contenido">
-			<h2>Lista de docentes que estan registrados en el sistema</h2>
-			<?php form_fliter_docente(); ?>
+			<h2>Lista de brigadas no oficiales disponibles en el sistema</h2>
+			<?php form_filter_brigada(); ?>
 			<div id="tabladocentes">
 				
 				<?php
 							
-							docentes();		
+							new_brigada_real();	
 						?>
 				
 			</div>
-						
-			
-		</div>
-		
-	
-		
+						</div>
       <!-- end .content --></div>
   <!-- end .container --></div>
 </body>
