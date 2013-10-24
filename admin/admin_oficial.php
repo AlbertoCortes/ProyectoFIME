@@ -26,21 +26,20 @@ $usuario =  $_SESSION['usuario'];
 				<li><a href="admin_docentes.php">Docentes</a></li>
 				<li><a href="admin_alumnos.php">Alumnos</a></li>
 				<li><a href="admin_brigadas.php">Brigadas</a></li>
-				<li><a href="">Brigadas Oficiales</a></li>
-				<li><a href="">Avisos</a></li>			
+				<li><a href="admin_oficial.php">Brigadas Oficiales</a></li>
+				<li><a href="admin_avisos.php">Avisos</a></li>						
 			</ul>
 		</div>
 		
 				<div id='cssmenu'>
 					<ul>
-			  			 <li class="active"><a href='admin_oficial.php'><span>Brigadas Oficiales </span></a></li>
-			  			 <li><a href= 'admin_oficial_new.php'><span>Nuevo Brigada Oficial</span></a></li>
-						   <li class='last'><a href='#'><span>Contact</span></a></li>
+			  			 <li class="active"><a href='admin_oficial.php'><span>Brigadas Oficiales</span></a></li>
+			  			 <li class="last"><a href='admin_oficial_new.php'><span>Nueva Brigada Oficial</span></a></li>
 					</ul>
 				</div>
 		
 		<div id="contenido">
-			<h2>Lista de brigadas no oficiales disponibles en el sistema</h2>
+			<h2>Lista de brigadas oficiales disponibles en el sistema</h2>
 			<?php form_filter_brigada(); ?>
 			<div id="tabladocentes">
 				

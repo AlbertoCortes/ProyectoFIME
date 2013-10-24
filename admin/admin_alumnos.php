@@ -25,9 +25,9 @@ $usuario =  $_SESSION['usuario'];
 			<ul id="nav">
 				<li><a href="admin_docentes.php">Docentes</a></li>
 				<li><a href="admin_alumnos.php">Alumnos</a></li>
-				<li><a href="">Brigadas</a></li>
-				<li><a href="">Brigadas Oficiales</a></li>
-				<li><a href="">Avisos</a></li>			
+				<li><a href="admin_brigadas.php">Brigadas</a></li>
+				<li><a href="admin_oficial.php">Brigadas Oficiales</a></li>
+				<li><a href="admin_avisos.php">Avisos</a></li>		
 			</ul>
 		</div>
 		
@@ -35,7 +35,7 @@ $usuario =  $_SESSION['usuario'];
 					<ul>
 			  			 <li class="active"><a href='admin_alumnos.php'><span>Alumnos </span></a></li>
 			  			 <li><a href= 'admin_alumnos_new.php'><span>Nuevo Alumno</span></a></li>
-						   <li class='last'><a href='#'><span>Contact</span></a></li>
+						  <li class='last'><a href='admin_alumnos_import.php'><span>Importar Alumnos</span></a></li>
 					</ul>
 				</div>
 		

@@ -13,7 +13,7 @@ function new_docente(){
 	echo"<tr><th>Nombre:</th><td><input type='text' name='Nombre' value='' onkeypress='return soloLetras(event)'/></td></tr>";
 	echo"<tr><th>Telefono:</th><td><input type='text' name='Telefono' value='' maxlength='10' onkeypress='javascript:return validarNro(event)'/></td></tr>";
 	echo"<tr><th>Email:</th><td><input type='text' name='Email'></td></tr>";
-	echo"<tr><td colspan='2'><center><input type='submit' value='Agregar Docente'> <input type='button' name='cancelar' value='Cancelar' onClick = 'self.location.href='admin_docentes.php'></center></td>";
+	echo"<tr><td colspan='2'><center><input type='submit' value='Agregar Docente'> </form></center></td>";
 	echo"</table>";
 }
 function new_alumno(){
@@ -32,7 +32,7 @@ function new_alumno(){
 	echo"</td>";
 	echo"</tr>";
 	echo"<tr><th>Email:</th><td><input type='text' name='Email'></td></tr>";
-	echo"<tr><td colspan='2'><center><input type='submit' value='Agregar Alumno'> <input type='button' name='cancelar' value='Cancelar' onClick = 'self.location.href='admin_alumnos.php'></center></td>";
+	echo"<tr><td colspan='2'><center><input type='submit' value='Agregar Alumno'></center></td>";
 	echo"</table>";
 }
 function import_alumnos(){

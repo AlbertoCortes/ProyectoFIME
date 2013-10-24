@@ -22,22 +22,23 @@ $usuario =  $_SESSION['usuario'];
 		<div id="divnav"> 
 			<ul id="nav">
 				<li><a href="admin_docentes.php">Docentes</a></li>
-				<li><a href="">Alumnos</a></li>
-				<li><a href="">Brigadas</a></li>
-				<li><a href="">Brigadas Oficiales</a></li>
-				<li><a href="">Avisos</a></li>			
+				<li><a href="admin_alumnos.php">Alumnos</a></li>
+				<li><a href="admin_brigadas.php">Brigadas</a></li>
+				<li><a href="admin_oficial.php">Brigadas Oficiales</a></li>
+				<li><a href="admin_avisos.php">Avisos</a></li>						
 			</ul>
 		</div>
-		<!--
+		
 				<div id='cssmenu'>
-					<ul>
-			 			  <li class='active'><a href='index.html'><span>Nuevo Docente</span></a></li>
-			  			 <li><a href='#'><span>Lista</span></a></li>
-			  			 <li><a href='#'><span>About</span></a></li>
-						   <li class='last'><a href='#'><span>Contact</span></a></li>
-					</ul>
+					
+					<br /><br /><br /><br /><br /><br /><br /><br />
 				</div>
-		-->
+		
+			<div id="contenido">
+			<h2>BIENVENIDO AL NUEVO SISTEMA DE INSCRIPCIONES PARA EL LABORATORIO DE FISICA 4</h2><br />
+			
+						</div>
+		
 		
       <!-- end .content --></div>
   <!-- end .container --></div>
