@@ -1,12 +1,11 @@
 <?php
 session_start();
-require_once("../action/reportes.php");
-require_once("../view/view.php");
 require_once("../login/valid.php");
 require_once("../login/validpriv.php");
-validAdmin();
+require_once("../update/view.php");
+validDocente();
 $usuario =  $_SESSION['usuario'];
-
+//require_once("../action/funciones_docente.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -19,9 +18,9 @@ $usuario =  $_SESSION['usuario'];
 <body>
 
 <div class="container">
-	<div id="top-bar"> <div id="bar-text">Sistema de Inscripciones -Administrador- (Brigadas)</div><div id="botonsalir">Bienvenido,  <?php echo $usuario->nombre; ?>   <a href="#" title="Editar mis datos" class="Bca">  Editar  </a>    <a href="../login/logout.php" title="Salir" class="BcaE">  Salir  </a></div></div>				
+	<div id="top-bar"> <div id="bar-text">Sistema de Inscripciones -Docente-</div><div id="botonsalir">Bienvenido,  <?php echo $usuario->nombre; ?>  <a href="#" title="Editar mis datos" class="Bca">  Editar  </a>    <a href="../login/logout.php" title="Salir" class="BcaE">  Salir  </a></div></div>				
 	<div class="content">
-		<div id="divnav"> 
+		<!--<div id="divnav"> 
 			<ul id="nav">
 				<li><a href="admin_docentes.php">Docentes</a></li>
 				<li><a href="admin_alumnos.php">Alumnos</a></li>
@@ -29,27 +28,31 @@ $usuario =  $_SESSION['usuario'];
 				<li><a href="admin_oficial.php">Brigadas Oficiales</a></li>
 				<li><a href="admin_avisos.php">Avisos</a></li>						
 			</ul>
-		</div>
+		</div>-->
 		
 				<div id='cssmenu'>
 					<ul>
-			  			 <li class="active"><a href='admin_oficial.php'><span>Brigadas Oficiales</span></a></li>
-			  			 <li class="last"><a href='admin_oficial_new.php'><span>Nueva Brigada Oficial</span></a></li>
+			  			 <li class="active"><a href=''><span>Mis datos</span></a></li>
+			  			 <li><a href="docente_brigadas.php"><span>Brigadas</span></a></li>
+			  			 <li><a href="docente_brigadas_oficiales.php"><span>Brigadas oficiales</span></a></li>
+			  			 <li><a href=""><span>Calificaciones</span></a></li>
 					</ul>
 				</div>
 		
-		<div id="contenido">
-			<h2>Lista de brigadas oficiales disponibles en el sistema</h2>
-			<?php form_filter_brigada_real(); ?>
+			<div id="contenido">
+			<h2>BIENVENIDO AL NUEVO SISTEMA DE INSCRIPCIONES PARA EL LABORATORIO DE FISICA 4</h2><br />
 			<div id="tabladocentes">
 				
 				<?php
 							
-							brigadas_reales();		
+							modificar_brigada();
 						?>
 				
 			</div>
+			
 						</div>
+		
+		
       <!-- end .content --></div>
   <!-- end .container --></div>
 </body>

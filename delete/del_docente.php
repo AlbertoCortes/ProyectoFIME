@@ -5,9 +5,9 @@ function del_empleado($num_empleado){
 	$sql = "DELETE FROM sflbf4.docente WHERE num_empleado = '$num_empleado'";
 	$result = mysql_query($sql);
 	if($result > 0){
-		echo'<script type="text/javascript">alert("El docente ha sido dado de baja del sistema");window.location.href="javascript:window.history.back()";</script>';
+		echo'<script type="text/javascript">alert("El docente ha sido dado de baja del sistema");window.location.href="../admin/admin_docentes.php";</script>';
 	}else{
-		echo'<script type="text/javascript">alert("ERROR. Existe una inconsistencia en el sistema, por favor contacte a su administrador");window.location.href="javascript:window.history.back()";</script>';
+		echo'<script type="text/javascript">alert("ERROR. Existe una inconsistencia en el sistema, por favor contacte a su administrador");window.location.href="../admin/admin_docentes.php";</script>';
 	}
 }
 del_empleado($docente);

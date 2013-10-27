@@ -1,7 +1,6 @@
 <?php
 session_start();
-require_once("../action/reportes.php");
-require_once("../view/view.php");
+require_once("../update/view.php");
 require_once("../login/valid.php");
 require_once("../login/validpriv.php");
 validAdmin();
@@ -27,7 +26,7 @@ $usuario =  $_SESSION['usuario'];
 				<li><a href="admin_alumnos.php">Alumnos</a></li>
 				<li><a href="admin_brigadas.php">Brigadas</a></li>
 				<li><a href="admin_oficial.php">Brigadas Oficiales</a></li>
-				<li><a href="admin_avisos.php">Avisos</a></li>						
+				<li><a href="admin_avisos.php">Avisos</a></li>					
 			</ul>
 		</div>
 		
@@ -39,16 +38,11 @@ $usuario =  $_SESSION['usuario'];
 				</div>
 		
 		<div id="contenido">
-			<h2>Lista de brigadas oficiales disponibles en el sistema</h2>
-			<?php form_filter_brigada_real(); ?>
-			<div id="tabladocentes">
-				
-				<?php
-							
-							brigadas_reales();		
-						?>
-				
-			</div>
+			<h2>Editar datos de brigada</h2>
+			<?php
+			modificar_brigada_real();
+			?>
+			
 						</div>
       <!-- end .content --></div>
   <!-- end .container --></div>

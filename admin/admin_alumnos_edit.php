@@ -39,7 +39,7 @@ $usuario =  $_SESSION['usuario'];
 				</div>
 		
 		<div id="contenido">
-			<h2> Ingresar nuevo docente al sistema</h2>
+			<h2> Editar datos de docente</h2>
 						<?php
 							modificar_alumno();		
 						?>

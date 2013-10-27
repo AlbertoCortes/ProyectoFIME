@@ -32,6 +32,11 @@ function filtro_brigadas(){
 	$brigada = buscar_brigadas($arg);
 	lista_brigadas($brigada);
 }
+function filtro_brigada_real(){
+	$arg = $_POST['info'];
+	$brigada = buscar_brigadas_reales($arg);
+	lista_brigadas_reales($brigada);
+}
 //docentes();
 //alumnos();
 //brigadas();

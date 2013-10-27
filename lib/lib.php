@@ -65,9 +65,9 @@ function insert_docente($num_empleado, $nombre, $pass, $telefono, $email){
 		echo'<script type="text/javascript">alert("ERROR. Existe una inconsistencia en la informacion");window.location.href="javascript:window.history.back()";</script>';
 	}
 }
-function insert_alumno($matricula, $nombre, $user, $pass, $email, $brigada_real){
-	$sql = "INSERT INTO sflbf4.alumno (matricula, nombre, user, pass, email, privilegios, brigada_real_idbrigada_real, brigadas_idbrigadas) 
-			VALUES('$matricula', '$nombre', '$user', '$pass', '$email', '0', '$brigada_real', NULL)";
+function insert_alumno($matricula, $nombre, $plan, $pass, $email, $brigada_real){
+	$sql = "INSERT INTO sflbf4.alumno (matricula, nombre, plan, pass, email, privilegios, brigada, brigadaP) 
+			VALUES('$matricula', '$nombre', '$plan', '$pass', '$email', '0', '$brigada_real', NULL)";
 	$result = mysql_query($sql);
 	if($result > 0){
 		echo'<script type="text/javascript">alert("El alumno ha sido dado de alta correctamente");window.location.href="javascript:window.history.back()";</script>';
@@ -148,6 +148,15 @@ function listar_brigadas_oficiales(){
 	}
 	return $brigada;
 }
+/*
+ * LISTAS DE TABLAS   ---FIN---
+ */
+ 
+ 
+
+/*
+ * BUSQUEDAS DE ADMINISTRADOR   ---INICIO--- 
+ */
 function buscar_docentes($arg){
 	//$sql = "SELECT * FROM docente WHERE num_empleado LIKE '%$arg' OR nombre LIKE '%$arg' OR telefono LIKE '%$arg' OR email LIKE '%$arg'";
 	$sql = "SELECT * FROM docente WHERE num_empleado = '$arg' OR nombre = '$arg' OR telefono = '$arg' OR email = '$arg'";
@@ -161,7 +170,7 @@ function buscar_docentes($arg){
 	return $docente;
 }
 function buscar_alumnos($arg){
-	$sql = "SELECT * FROM alumno WHERE matricula = '$arg' OR nombre = '$arg' OR email = '$arg' OR brigada_real_idbrigada_real = '$arg'";
+	$sql = "SELECT * FROM alumno WHERE matricula = '$arg' OR nombre = '$arg' OR email = '$arg' OR brigada = '$arg'";
 	$result = mysql_query($sql);
 	$alumno = array();
 	$i = 0;
@@ -185,9 +194,24 @@ function buscar_brigadas($arg){
 	}
 	return $brigada;
 }
+function buscar_brigadas_reales($arg){
+	//$sql = "SELECT * FROM brigadas WHERE idbrigadas = '$arg' OR dia = '$arg' OR hora = '$arg' OR salon = '$arg' OR cupo = '$arg' OR docente_num_empleado = '$arg'";
+	$sql = "SELECT brigada_real.idbrigada_real, docente.nombre FROM docente INNER JOIN brigada_real ON brigada_real.docente_num_empleado = num_empleado WHERE
+	idbrigada_real = '$arg' OR docente_num_empleado = '$arg' OR docente.nombre = '$arg'";
+	$result = mysql_query($sql);
+	$brigada = array();
+	$i = 0;
+	while ($row = mysql_fetch_object($result)){
+		$brigada[$i] = $row;
+		$i++;	
+	}
+	return $brigada;
+}
 /*
- * LISTAS DE TABLAS   ---FIN---
+ * BUSQUEDAS DE ADMINISTRADOR   ---FIN--- 
  */
+ 
+ 
  
 /*
  * DROPS PARA FORMULARIOS   ---INICIO---
@@ -214,5 +238,91 @@ function drop_brigada_real(){
 			$i++;
 		}	
 		return $brigadas;
+}
+/*
+ * DROPS PARA FORMULARIOS   ---FIN---
+ */
+ 
+ 
+/*
+ * FUNCIONES PARA DOCENTE   ---INICIO---
+*/
+function mis_brigadas($docente){
+	$sql = "SELECT * FROM sflbf4.brigadas WHERE brigadas.docente_num_empleado = '$docente'";
+	//echo $sql;
+	$result = mysql_query($sql);
+	$mis_brigadas = array();
+	$i = 0;
+	while($row = mysql_fetch_object($result)){
+		$mis_brigadas[$i] = $row;
+		$i ++;
+	}
+	return $mis_brigadas;
+}
+function mis_brigadas_oficiales($docente){
+	$sql = "SELECT * FROM sflbf4.brigada_real WHERE docente_num_empleado = '$docente'";
+	$result = mysql_query($sql);
+	$mis_brigadas = array();
+	$i = 0;
+	while($row = mysql_fetch_object($result)){
+		$mis_brigadas[$i] = $row;
+		$i++;
+	}
+	return $mis_brigadas;
+}
+function lista_brigada_oficial($brigada){
+	$sql = "SELECT * FROM sflbf4.alumno  WHERE brigada = '$brigada'";
+	$result = mysql_query($sql);
+	$alumnos = array();
+	$i = 0;
+	while($row = mysql_fetch_object($result)){
+		$alumnos[$i] = $row;
+		$i ++;
+	}
+	return $alumnos;
+}
+function lista_brigada($brigada){
+	$sql = "SELECT * FROM sflbf4.alumno  WHERE brigadaP = '$brigada'";
+	$result = mysql_query($sql);
+	$alumnos = array();
+	$i = 0;
+	while($row = mysql_fetch_object($result)){
+		$alumnos[$i] = $row;
+		$i ++;
+	}
+	return $alumnos;
+}
+function select_calif($alumno){
+		$sql = "SELECT calificaciones.* , alumno.* FROM alumno INNER JOIN calificaciones ON calificaciones.alumno_matricula = matricula WHERE
+	alumno_matricula = '$alumno' OR matricula = '$alumno'";
+ 	//$sql = "SELECT * FROM sflbf4.calificaciones, sflbf4.alumno WHERE alumno_matricula = '$alumno' , matricula = '$alumno'";
+	$result = mysql_query($sql);
+	$calif = null;
+	while($row = mysql_fetch_object($result)){
+		$calif = $row;
+	}
+	return $calif;
+}
+function update_calif($matricula, $datos){
+	$total = 0;
+	foreach ($datos as $key => $dato) {
+		$total = $total	+ $dato;	
+	}
+	$prom = $total / 10;
+	 $sql = "UPDATE sflbf4.calificaciones SET cal1='$datos[0]', cal2='$datos[1]', cal3='$datos[2]', cal4='$datos[3]', cal5='$datos[4]', cal6='$datos[5]',
+	 cal7='$datos[6]', cal8='$datos[7]', cal9='$datos[8]', cal10='$datos[9]', promedioF='$prom'  WHERE alumno_matricula = '$matricula'";
+	 //echo "<br>".$sql;
+$result= mysql_query($sql);
+        if ($result >0){
+                //echo "<script type='text/javascript'>alert('Se ha actualizado la informacion');</script>";  
+				echo'<script type="text/javascript">alert("Se ha actualizado la informacion satisfactoriamente");window.location.href="javascript:window.history.back()";</script>';
+				//header('Location: ../admin/admin_docentes.php');
+        }
+        else {
+        		echo'<script type="text/javascript">alert("ERROR. Existe una inconsistencia en la informacion");window.location.href="javascript:window.history.back()";</script>';
+        }  
+}
+function activar_brigada($brigada){
+	
 }
 ?>

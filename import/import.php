@@ -22,11 +22,16 @@ function import_mysql($archivo){
 	
 	$result = mysql_query($sql);
 	if($result > 0){
+		import_calif();
 		echo'<script type="text/javascript">alert("La operacion se ha llevado a cabo con exito");window.location.href="javascript:window.history.back()";</script>';
 	}
 	else {
 		echo'<script type="text/javascript">alert("ERROR. Existe una inconsistencia con el archivo seleccionado");window.location.href="javascript:window.history.back()";</script>';
 	}
+}
+function import_calif(){
+	$sql = "INSERT INTO sflbf4.calificaciones(alumno_matricula) SELECT matricula FROM sflbf4.alumno";
+	$result = mysql_query($sql);
 }
 import_mysql($archivo);
 //import_plan($archivo);

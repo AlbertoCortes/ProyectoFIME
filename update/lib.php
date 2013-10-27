@@ -36,6 +36,15 @@ function seleccionar_brigada($brigada){
 	}
 	return $alumno;
 }
+function seleccionar_brigadaP($brigada){
+	$sql = "SELECT * FROM sflbf4.brigadas WHERE idbrigadas = '$brigada'";
+	$result = mysql_query($sql);
+	$brigada = null;
+	while($row = mysql_fetch_object($result)){
+		$brigada = $row;
+	}
+	return $brigada;
+}
 function update_docente($num_empleado, $datos){
 	 $sql = "UPDATE sflbf4.docente SET nombre='$datos[0]', telefono ='$datos[1]', email='$datos[2]' WHERE num_empleado = '$num_empleado'";
 	 //echo "<br>".$sql;
@@ -69,13 +78,26 @@ function update_brigada($brigada, $datos){
 	// echo "<br>".$sql;
 $result= mysql_query($sql);
         if ($result >0){
+        				//	echo'<script type="text/javascript">alert("Se ha actualizado la informacion satisfactoriamente");window.location.href="../admin/admin_docentes.php";</script>';
+			
                 echo "Se ha ingresado la informacion exitosamente";
         }
         else {
                 echo  "Existe una inconsistencia en informacion";
         }  
 }
-
+function update_brigadaP($brigada, $datos){
+	 $sql = "UPDATE sflbf4.brigadas SET cupo = '$datos[0]', disponibilidad = '$datos[1]' WHERE idbrigadas = '$brigada'";
+	// echo "<br>".$sql;
+$result= mysql_query($sql);
+        if ($result >0){
+        	echo'<script type="text/javascript">alert("Se ha actualizado la informacion satisfactoriamente");window.location.href="../docente/docente_brigadas.php";</script>';
+                
+        }
+        else {
+                echo  "Existe una inconsistencia en informacion";
+        }  
+}
 function drop_brigada_real(){
 	$sql= "SELECT idbrigada_real FROM  brigada_real " ;
 	 	$brigadas= array();

@@ -18,7 +18,7 @@
 					<form action="login/loginvalidate.php" method="POST">
 						<tr><td>Usuario:</td><td><input type="text" name="usuario" /></td></tr>
 						<tr><td>Contrasenia:</td><td><input type="password" name="pass" /></td></tr>
-						<input type="hidden" name="niv" value="2" />
+						<input type="hidden" name="niv" value="1" />
 						<tr><td colspan="2"><center><input type="submit" value="Entrar" /></center></td></tr>
 					</form>
 				</table>
