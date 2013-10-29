@@ -2,9 +2,10 @@
 session_start();
 require_once("../login/valid.php");
 require_once("../login/validpriv.php");
-validDocente();
+require_once("../action/funciones_alumno.php");
+validAlumno();
 $usuario =  $_SESSION['usuario'];
-require_once("../action/funciones_docente.php");
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -17,7 +18,7 @@ require_once("../action/funciones_docente.php");
 <body>
 
 <div class="container">
-	<div id="top-bar"> <div id="bar-text">Sistema de Inscripciones -Docente-</div><div id="botonsalir">Bienvenido,  <?php echo $usuario->nombre; ?>  <a href="#" title="Editar mis datos" class="Bca">  Editar  </a>    <a href="../login/logout.php" title="Salir" class="BcaE">  Salir  </a></div></div>				
+	<div id="top-bar"> <div id="bar-text">Sistema de Inscripciones -Alumno-</div><div id="botonsalir">Bienvenido,  <?php echo $usuario->nombre; ?>  <a href="#" title="Editar mis datos" class="Bca">  Editar  </a>    <a href="../login/logout.php" title="Salir" class="BcaE">  Salir  </a></div></div>				
 	<div class="content">
 		<!--<div id="divnav"> 
 			<ul id="nav">
@@ -31,10 +32,9 @@ require_once("../action/funciones_docente.php");
 		
 				<div id='cssmenu'>
 					<ul>
-			  			  <li class="active"><a href='docente.php'><span>Inicio</span></a></li>
-			  			 <li><a href="docente_brigadas.php"><span>Brigadas</span></a></li>
-			  			 <li><a href="docente_brigadas_oficiales.php"><span>Brigadas oficiales</span></a></li>
-			  			 <li><a href="docente_alumnos.php"><span>Mis alumnos</span></a></li>
+			  			 <li class="active"><a href='alumno.php'><span>Inicio</span></a></li>
+			  			 <li><a href="alumno_calificaciones.php"><span>Mis calificaciones</span></a></li>
+			  			 <li><a href="alumno_inscribir.php"><span>Brigadas </span></a></li>
 					</ul>
 				</div>
 		
@@ -43,8 +43,8 @@ require_once("../action/funciones_docente.php");
 			<div id="tabladocentes">
 				
 				<?php
+						lista_brigadasA();
 							
-							mis_brigadasR($usuario->num_empleado);		
 						?>
 				
 			</div>

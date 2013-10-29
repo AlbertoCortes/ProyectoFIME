@@ -292,6 +292,17 @@ function lista_brigada($brigada){
 	}
 	return $alumnos;
 }
+function lista_alumnosD($docente){
+	$sql = "SELECT * FROM sflbf4.alumno WHERE alumno.brigada = ANY (SELECT idbrigada_real FROM sflbf4.brigada_real where brigada_real.docente_num_empleado = '$docente')";
+	$result = mysql_query($sql);
+	$alumnos = array();
+	$i = 0;
+	while($row = mysql_fetch_object($result)){
+		$alumnos[$i] = $row;
+		$i ++;
+	}
+	return $alumnos;	
+}
 function select_calif($alumno){
 		$sql = "SELECT calificaciones.* , alumno.* FROM alumno INNER JOIN calificaciones ON calificaciones.alumno_matricula = matricula WHERE
 	alumno_matricula = '$alumno' OR matricula = '$alumno'";
@@ -325,4 +336,27 @@ $result= mysql_query($sql);
 function activar_brigada($brigada){
 	
 }
+
+
+/*
+ * FUNCIONES ALUMNO   ---INICIO---
+ */
+function listar_brigadas_disponibles(){
+	$sql = "SELECT brigadas.*, docente.nombre FROM docente INNER JOIN brigadas ON brigadas.docente_num_empleado = docente.num_empleado WHERE brigadas.disponibilidad = '1'	";	
+	$result = mysql_query($sql);
+	$brigada = array();
+	$i = 0;
+	while ($row = mysql_fetch_object($result)){
+		$brigada[$i] = $row;
+		$i++;	
+	}
+	return $brigada;
+}
+ 
+ 
+ 
+ 
+/*
+ * FUNCTIONES ALUMNO   ---FIN---
+ */
 ?>

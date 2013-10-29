@@ -31,7 +31,7 @@ require_once("../action/funciones_docente.php");
 		
 				<div id='cssmenu'>
 					<ul>
-			  			  <li class="active"><a href='docente.php'><span>Inicio</span></a></li>
+			  			<li class="active"><a href='docente.php'><span>Inicio</span></a></li>
 			  			 <li><a href="docente_brigadas.php"><span>Brigadas</span></a></li>
 			  			 <li><a href="docente_brigadas_oficiales.php"><span>Brigadas oficiales</span></a></li>
 			  			 <li><a href="docente_alumnos.php"><span>Mis alumnos</span></a></li>
@@ -44,7 +44,7 @@ require_once("../action/funciones_docente.php");
 				
 				<?php
 							
-							mis_brigadasR($usuario->num_empleado);		
+							mis_alumnos($usuario->num_empleado);
 						?>
 				
 			</div>

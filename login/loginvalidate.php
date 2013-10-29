@@ -26,8 +26,8 @@ function validDocente($user, $pass){
 	return $usuario;
 }
 function validAlumno($user, $pass){
-	$sql= "SELECT matricula, nombre, user, pass, email, privilegios 
-	FROM sflbf4.alumno WHERE user ='$user' AND pass = '$pass' LIMIT 1";
+	$sql= "SELECT matricula, nombre, pass, email, brigada,plan,  privilegios 
+	FROM sflbf4.alumno WHERE matricula ='$user' AND pass = '$pass' LIMIT 1";
 	$result=mysql_query($sql);
 	$usuario = null;
 	while($row=mysql_fetch_object($result)){
@@ -65,7 +65,7 @@ if($priv == 0){
 	$usuario=validAlumno($user, $pass);
 		if(!empty($usuario)){
 			$_SESSION['usuario'] = $usuario;
-			header('Location: ../main/alumno.php');	
+			header('Location: ../alumno/alumno.php');	
 		}else{
 			echo'<script type="text/javascript">alert("ERROR: Usuario o contraseña incorrectos");window.location.href="javascript:window.history.back()";</script>'; 
 			die();

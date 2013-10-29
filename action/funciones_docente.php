@@ -20,5 +20,9 @@ function lista_brigada_oficialR(){
 	$alumno = lista_brigada_oficial($brigada);
 	lista_brigada_oficialV($alumno);
 }
+function mis_alumnos($docente){
+	$alumnos = lista_alumnosD($docente);
+	lista_brigada_oficialV($alumnos);
+}
 
 ?>

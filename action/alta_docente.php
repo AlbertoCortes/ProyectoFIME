@@ -13,5 +13,5 @@ $Email      = $_POST['Email'];
 $user = $Noempleado;
 $pass = $Noempleado;
 valid_docente($Noempleado);
-insert_docente($Noempleado, $Nombre, $user, $pass, $Telefono, $Email); 
+insert_docente($Noempleado, $Nombre, $pass, $Telefono, $Email); 
 ?>

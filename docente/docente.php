@@ -2,6 +2,7 @@
 session_start();
 require_once("../login/valid.php");
 require_once("../login/validpriv.php");
+require_once("../view/view.php");
 validDocente();
 $usuario =  $_SESSION['usuario'];
 
@@ -31,15 +32,23 @@ $usuario =  $_SESSION['usuario'];
 		
 				<div id='cssmenu'>
 					<ul>
-			  			 <li class="active"><a href=''><span>Mis datos</span></a></li>
+			  			 <li class="active"><a href='docente.php'><span>Inicio</span></a></li>
 			  			 <li><a href="docente_brigadas.php"><span>Brigadas</span></a></li>
 			  			 <li><a href="docente_brigadas_oficiales.php"><span>Brigadas oficiales</span></a></li>
-			  			 <li><a href=""><span>Calificaciones</span></a></li>
+			  			 <li><a href="docente_alumnos.php"><span>Mis alumnos</span></a></li>
 					</ul>
 				</div>
 		
 			<div id="contenido">
 			<h2>BIENVENIDO AL NUEVO SISTEMA DE INSCRIPCIONES PARA EL LABORATORIO DE FISICA 4</h2><br />
+			<div id="tabladocentes">
+				
+				<?php
+							
+							inicioDoc($usuario);
+						?>
+				
+			</div>
 			
 						</div>
 		

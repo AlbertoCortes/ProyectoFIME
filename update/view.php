@@ -13,6 +13,36 @@ function modificar_docente(){
 	echo"<tr><td colspan='2'><center><input type='submit' value='Actualizar Datos'> <input type='button' name='cancelar' value='Cancelar' onClick = 'self.location.href='../main/adminIndex.php'></center></td>";
 	echo"</table>";
 }
+function modificar_mis_datos_docente($usuario){
+	echo"<table>";
+	echo"<form name ='new_docente' action='../update/update_docenteD.php' method='POST' >";
+	echo"<tr><th>Nombre:</th><td><input type='text' name='nombre' readonly='readonly' value='".$usuario->nombre."' onkeypress='return soloLetras(event)'/></td></tr>";
+	echo"<tr><th>Telefono:</th><td><input type='text' name='telefono' value='".$usuario->telefono."' maxlength='10' onkeypress='javascript:return validarNro(event)'/></td></tr>";
+	echo"<tr><th>Email:</th><td><input type='text' name='email' value='".$usuario->email."'></td></tr>";
+	echo "<input type='hidden' name ='docente' value='".$usuario->num_empleado."''>";
+	echo"<tr><td colspan='2'><center><input type='submit' value='Actualizar Datos'> <input type='button' name='cancelar' value='Cancelar' onClick = 'self.location.href='../main/adminIndex.php'></center></td>";
+	echo"</table>";
+}
+function modificar_contra($usuario){
+	echo"<table>";
+	echo"<form name ='new_docente' action='../update/update_contraD.php' method='POST' >";
+	echo"<tr><th>Password actual:</th><td><input type='text' name='c1' value=''></td></tr>";
+	echo"<tr><th>Nuevo Password:</th><td><input type='text' name='c2' value=''></td></tr>";
+	echo"<tr><th>Repita nuevo password:</th><td><input type='text' name='c3' value=''></td></tr>";
+	echo "<input type='hidden' name ='docente' value='".$usuario->num_empleado."''>";
+	echo"<tr><td colspan='2'><center><input type='submit' value='Actualizar Password'> <input type='button' name='cancelar' value='Cancelar' onClick = 'self.location.href='../main/adminIndex.php'></center></td>";
+	echo"</table>";
+}
+function modificar_contraAl($usuario){
+	echo"<table>";
+	echo"<form name ='new_docente' action='../update/update_contraAl.php' method='POST' >";
+	echo"<tr><th>Password actual:</th><td><input type='text' name='c1' value=''></td></tr>";
+	echo"<tr><th>Nuevo Password:</th><td><input type='text' name='c2' value=''></td></tr>";
+	echo"<tr><th>Repita nuevo password:</th><td><input type='text' name='c3' value=''></td></tr>";
+	echo "<input type='hidden' name ='alumno' value='".$usuario->matricula."''>";
+	echo"<tr><td colspan='2'><center><input type='submit' value='Actualizar Password'> <input type='button' name='cancelar' value='Cancelar' onClick = 'self.location.href='../main/adminIndex.php'></center></td>";
+	echo"</table>";
+}
 function modificar_alumno(){
 	$matricula = seleccionar_alumno($_POST['id']);
 	echo"<table>";

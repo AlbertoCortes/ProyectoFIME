@@ -58,6 +58,45 @@ $result= mysql_query($sql);
         		echo'<script type="text/javascript">alert("ERROR. Existe una inconsistencia en la informacion");window.location.href="javascript:window.history.back()";</script>';
         }  
 }
+function update_docenteD($num_empleado, $datos){
+	 $sql = "UPDATE sflbf4.docente SET nombre='$datos[0]', telefono ='$datos[1]', email='$datos[2]' WHERE num_empleado = '$num_empleado'";
+	 //echo "<br>".$sql;
+$result= mysql_query($sql);
+        if ($result >0){
+                //echo "<script type='text/javascript'>alert('Se ha actualizado la informacion');</script>";  
+				echo'<script type="text/javascript">alert("Se ha actualizado la informacion satisfactoriamente");window.location.href="javascript:window.history.back()";</script>';
+				//header('Location: ../admin/admin_docentes.php');
+        }
+        else {
+        		echo'<script type="text/javascript">alert("ERROR. Existe una inconsistencia en la informacion");window.location.href="javascript:window.history.back()";</script>';
+        }  
+}
+function update_contraD($num_empleado, $datos){
+		 $sql = "UPDATE sflbf4.docente SET pass='$datos[0]' WHERE num_empleado = '$num_empleado'";
+	 //echo "<br>".$sql;
+$result= mysql_query($sql);
+        if ($result >0){
+                //echo "<script type='text/javascript'>alert('Se ha actualizado la informacion');</script>";  
+				echo'<script type="text/javascript">alert("Se ha actualizado la informacion satisfactoriamente");window.location.href="javascript:window.history.back()";</script>';
+				//header('Location: ../admin/admin_docentes.php');
+        }
+        else {
+        		echo'<script type="text/javascript">alert("ERROR. Existe una inconsistencia en la informacion");window.location.href="javascript:window.history.back()";</script>';
+        }  
+}
+function update_passAl($alumno, $newPass){
+	 $sql = "UPDATE sflbf4.alumno SET pass='$newPass' WHERE matricula = '$alumno'";
+	 //echo "<br>".$sql;
+$result= mysql_query($sql);
+        if ($result >0){
+                //echo "<script type='text/javascript'>alert('Se ha actualizado la informacion');</script>";  
+				echo'<script type="text/javascript">alert("Se ha actualizado la informacion satisfactoriamente");window.location.href="../alumno/alumno.php";</script>';
+				//header('Location: ../admin/admin_docentes.php');
+        }
+        else {
+        		echo'<script type="text/javascript">alert("ERROR. Existe una inconsistencia en la informacion");window.location.href="javascript:window.history.back()";</script>';
+        }  
+}
 function update_alumno($matricula, $datos){
 	 $sql = "UPDATE sflbf4.alumno SET nombre='$datos[0]', email ='$datos[1]', brigada_real_idbrigada_real='$datos[2]' WHERE matricula = '$matricula'";
 	// echo "<br>".$sql;
@@ -65,6 +104,21 @@ $result= mysql_query($sql);
         if ($result >0){
                 //echo "Se ha ingresado la informacion exitosamente";
                 echo'<script type="text/javascript">alert("Se ha actualizado la informacion satisfactoriamente");window.location.href="../admin/admin_alumnos.php";</script>';
+                
+        }
+        else {
+                //echo  "Existe una inconsistencia en informacion";
+                		echo'<script type="text/javascript">alert("ERROR. Existe una inconsistencia en la informacion");window.location.href="javascript:window.history.back()";</script>';
+        
+        }  
+}
+function update_alumno_email($alumno, $datos){
+	 $sql = "UPDATE sflbf4.alumno SET email='$datos[0]' WHERE matricula = '$alumno'";
+	// echo "<br>".$sql;
+$result= mysql_query($sql);
+        if ($result >0){
+                //echo "Se ha ingresado la informacion exitosamente";
+                echo'<script type="text/javascript">alert("Se ha actualizado la informacion satisfactoriamente, los cambios se veran reflejados una ves que inicies sesion nuevamente");window.location.href="../alumno/alumno.php";</script>';
                 
         }
         else {
