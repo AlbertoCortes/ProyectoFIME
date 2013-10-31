@@ -54,7 +54,15 @@ if($priv == 1){
 	$usuario=validDocente($user, $pass);
 		if(!empty($usuario)){
 			$_SESSION['usuario'] = $usuario;
-			header('Location: ../docente/docente.php');	
+			switch ($usuario->privilegios) {
+				case '1':
+					header('Location: ../docente/docente.php');
+					break;
+				case '3':
+					header('Location: ../docenteP/docenteP.php');
+					break;
+			}
+			
 		}else{
 			echo'<script type="text/javascript">alert("ERROR: Usuario o contraseña incorrectos");window.location.href="javascript:window.history.back()";</script>'; 
 			die();

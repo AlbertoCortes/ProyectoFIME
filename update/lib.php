@@ -132,12 +132,13 @@ function update_brigada($brigada, $datos){
 	// echo "<br>".$sql;
 $result= mysql_query($sql);
         if ($result >0){
-        				//	echo'<script type="text/javascript">alert("Se ha actualizado la informacion satisfactoriamente");window.location.href="../admin/admin_docentes.php";</script>';
+        	echo'<script type="text/javascript">alert("Se ha actualizado la informacion satisfactoriamente");window.location.href="../admin/admin_oficial.php";</script>';
 			
-                echo "Se ha ingresado la informacion exitosamente";
+        //        echo "Se ha ingresado la informacion exitosamente";
         }
         else {
-                echo  "Existe una inconsistencia en informacion";
+        //        echo  "Existe una inconsistencia en informacion";
+        	echo'<script type="text/javascript">alert("ERROR. Existe una inconsistencia en la informacion");window.location.href="javascript:window.history.back()";</script>';
         }  
 }
 function update_brigadaP($brigada, $datos){

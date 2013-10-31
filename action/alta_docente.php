@@ -5,13 +5,13 @@ $Noempleado = $_POST['Noempleado'];
 $Nombre     = $_POST['Nombre'];
 $Telefono   = $_POST['Telefono'];
 $Email      = $_POST['Email'];
+$Permisos 	= $_POST['permisos'];
 	if(empty($Noempleado) || empty($Nombre) || empty($Telefono) || empty($Email))
 	{
 		echo'<script type="text/javascript">alert("ERROR: No deje campos vacios");window.location.href="javascript:window.history.back()";</script>';  
 		die();  
 	}
-$user = $Noempleado;
 $pass = $Noempleado;
 valid_docente($Noempleado);
-insert_docente($Noempleado, $Nombre, $pass, $Telefono, $Email); 
+insert_docente($Noempleado, $Nombre, $pass, $Telefono, $Email, $Permisos); 
 ?>

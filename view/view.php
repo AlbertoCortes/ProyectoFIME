@@ -13,6 +13,7 @@ function new_docente(){
 	echo"<tr><th>Nombre:</th><td><input type='text' name='Nombre' value='' onkeypress='return soloLetras(event)'/></td></tr>";
 	echo"<tr><th>Telefono:</th><td><input type='text' name='Telefono' value='' maxlength='10' onkeypress='javascript:return validarNro(event)'/></td></tr>";
 	echo"<tr><th>Email:</th><td><input type='text' name='Email'></td></tr>";
+	echo"<tr><th>Permisos especiales:</th><td>Si<input type='radio' checked='false' name='permisos' value='3'>No<input type='radio' name='permisos' checked='true' value='1'></td></tr>";
 	echo"<tr><td colspan='2'><center><input type='submit' value='Agregar Docente'> </form></center></td>";
 	echo"</table>";
 }

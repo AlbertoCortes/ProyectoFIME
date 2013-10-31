@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Inicio</title>
-<link href="index.css" rel="stylesheet" type="text/css" />
+<link href="../index.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -12,7 +12,7 @@
 <div class="container">
 	<div id="top-bar"> <div>Sistema de Inscripciones Laboratorio Fisica IV -Inicio-</div></div>
 	<div class="content">
-		<h3>Iniciar Sesion</h3>
+		<h3>Iniciar Sesion -Administrador-</h3>
 			<div id="formlogin">
 				<table>
 					<form action="../login/loginvalidate.php" method="POST">

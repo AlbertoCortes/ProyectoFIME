@@ -55,9 +55,9 @@ function valid_brigada_real($brigada){
  /*
   * INSERCIONES EN BASE DE DATOS  ---INICIO---
   */
-function insert_docente($num_empleado, $nombre, $pass, $telefono, $email){
+function insert_docente($num_empleado, $nombre, $pass, $telefono, $email, $permisos){
 	$sql = "INSERT INTO sflbf4.docente (num_empleado, nombre, pass, telefono, email, privilegios) 	
-			VALUES('$num_empleado', '$nombre', '$pass', '$telefono', '$email', '1')";
+			VALUES('$num_empleado', '$nombre', '$pass', '$telefono', '$email', '$permisos')";
 	$result = mysql_query($sql);
 	if($result > 0){
 		echo'<script type="text/javascript">alert("El docente ha sido dado de alta correctamente");window.location.href="javascript:window.history.back()";</script>';
