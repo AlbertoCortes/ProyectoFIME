@@ -134,7 +134,7 @@ function modificar_brigada(){
 	echo"<tr><th>Cupo:</th><td><input type='text' name='NAlumnos' value='".$brigada->cupo."' maxlength='2' onkeypress='return validarNro(event)'/></td></tr>";
 	echo"<tr><th>Disponible:</th><td>Si<input type='radio' checked='true' name='disp' value='1'>No<input type='radio' name='disp' value='0'></td></tr>";
 	echo "<input type='hidden' name ='brigada' value='".$brigada->idbrigadas."''>";?>
-	<tr><td colspan='2'><center><input type='submit' value='Aceptar'>   <input type='button' name='cancelar' value='Cancelar' onClick = "self.location.href='docente_brigadas.php'"></center></td>
+	<tr><td colspan='2'><center><input type='submit' value='Aceptar'>   <input type='button' name='cancelar' value='Cancelar' onClick = "self.location.href='admin_brigadas.php'"></center></td>
 	<?php
 	echo"</table>";
 }

@@ -27,6 +27,7 @@ function filtro_alumnos(){
 	$alumno = buscar_alumnos($arg);
 	lista_alumnos($alumno);
 }
+
 function filtro_brigadas(){
 	$arg = $_POST['info'];
 	$brigada = buscar_brigadas($arg);

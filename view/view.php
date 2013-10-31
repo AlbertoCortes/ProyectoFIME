@@ -131,6 +131,7 @@ function lista_docentes($docentes){
 	echo "<th>Nombre</th>";
 	echo "<th>Telefono</th>";
     echo "<th>E-mail</th>";
+	echo "<th>Password</th>";
     echo "<th>Editar</th>";
     echo "<th>Eliminar</th>";
 	echo "</tr>";
@@ -140,6 +141,7 @@ function lista_docentes($docentes){
 	echo "<td>".$doc->nombre."</td>";
 	echo "<td>".$doc->telefono."</td>";
     echo "<td>".$doc->email."</td>";
+	echo "<td>".$doc->pass."</td>";
 	echo "<td><form action='../admin/admin_docentes_edit.php' method='POST'><input type='hidden' value='".$doc->num_empleado."' name='id'><input type='submit' value='Modificar'></form></td>";
 	echo "<td><form action='../delete/del_docente.php' method='POST'><input type='hidden' value='".$doc->num_empleado."' name='id'><input type='submit' value='Eliminar'></form></td>";
 	//echo "<td><a href='eliminar.php?id=5' onclick='javascript:return confirmar('¿Está seguro que desea eliminar el registro?')'>Eliminar</a></td>";
@@ -154,6 +156,7 @@ function lista_alumnos($alumnos){
 	echo "<th>E-mail</th>";
     echo "<th>Brigada</th>";
     echo "<th>Plan</th>";
+	echo "<th>Password</th>";
 	echo "<th>Modificar</th>";
 	echo "<th>Eliminar</th>";
 	echo "</tr>";
@@ -164,6 +167,7 @@ function lista_alumnos($alumnos){
 	echo "<td>".$alum->email."</td>";
     echo "<td>".$alum->brigada."</td>";
     echo "<td>".$alum->plan."</td>";
+	echo "<td>".$alum->pass."</td>";
 	//echo "<td>"."<a href=../update/view/view.php?id=".$alum->matricula.">Editar</a></td> ";
 	echo "<td><form name='modificar' action='../admin/admin_alumnos_edit.php' method='POST'><input type='hidden' value='".$alum->matricula."' name='id'><input type='submit' value='Modificar'></form></td>";
 	echo "<td><form action='../delete/del_alumno.php' method='POST'><input type='hidden' value='".$alum->matricula."' name='id'><input type='submit' value='Eliminar'></form></td>";
@@ -172,22 +176,36 @@ function lista_alumnos($alumnos){
 	echo "</table>";
 }
 function lista_brigadas($brigadas){
+		function check($disp){
+		if($disp == 1){
+			$res=  "<img src='../resources/yes.png'>";
+		}
+elseif($disp == 0){
+	$res=  "<img src='../resources/no.png'>";
+}
+return $res;
+	}
 	echo "<table border=1>";
 	echo "<tr>";
 	echo "<th>Brigada</th>";
 	echo "<th>Dia</th>";
 	echo "<th>Hora</th>";
 	echo "<th>Cupo</th>";
+	echo "<th>Disponible</th>";
 	echo "<th>Maestro Encargado</th>";
+	echo "<th>Modificar</th>";
 	echo "<th>Eliminar Brigada</th>";
 	echo "</tr>";
 	foreach ($brigadas as $key => $brig) {
+	$disp=check($brig->disponibilidad);
 	echo "<tr>";
 	echo "<td>".$brig->idbrigadas."</td>";
 	echo "<td>".$brig->dia."</td>";
 	echo "<td>".$brig->hora."</td>";
 	echo "<td>".$brig->cupo."</th>";
+	echo "<td><center>".$disp."</center></td>";
 	echo "<td>".$brig->nombre."</th>";
+	echo "<td><form  action='admin_brigadas_edit.php' method='POST'><input type='hidden' value='".$brig->idbrigadas."' name='id'><input type='submit' value='Modificar'></form></td>";
 	echo "<td><form action='../delete/del_brigada.php' method='POST'><input type='hidden' value='".$brig->idbrigadas."' name='id'><input type='submit' value='Eliminar'></form></td>";
 	echo"</tr>";
 }
@@ -228,6 +246,14 @@ function form_filter_alumno(){
 	echo "<form action='../admin/admin_alumnos_search.php' method='post'>";
 	echo "</br></br>";
 	echo "<input type= 'text' id='info' name='info'>"; 
+	echo "<input type= 'submit'  value='BUSCAR' >"; 
+	echo "</br></br>";
+	echo "</form>";
+}
+function form_filter_alumno_docente(){
+	echo "<form action='../docente/docente_alumnos_search.php' method='post'>";
+	echo "</br></br>";
+	echo "Buscar alumno por matricula: <input type= 'text' id='info' name='info'>"; 
 	echo "<input type= 'submit'  value='BUSCAR' >"; 
 	echo "</br></br>";
 	echo "</form>";
@@ -283,7 +309,6 @@ return $res;
 	echo "<th>Hora</ht>";
 	echo "<th>Cupo</ht>";
 	echo "<th>Disponibilidad</th>";
-	echo "<th>Modificar</th>";
 	echo "<th>Iniciar Clase</th></tr>";
 	foreach ($brigadas as $key => $brig) {
 		$disp=check($brig->disponibilidad);
@@ -293,7 +318,7 @@ return $res;
 		echo "<td>".$brig->hora."</td>";
 		echo "<td>".$brig->cupo."</td>";
 		echo "<td><center>".$disp."</center></td>";
-		echo "<td><form  action='../docente/docente_brigadas_edit.php' method='POST'><input type='hidden' value='".$brig->idbrigadas."' name='id'><input type='submit' value='Modificar'></form></td>";
+		//echo "<td><form  action='../docente/docente_brigadas_edit.php' method='POST'><input type='hidden' value='".$brig->idbrigadas."' name='id'><input type='submit' value='Modificar'></form></td>";
 		echo "<td><form  action='../docente/docente_clase.php' method='POST'><input type='hidden' value='".$brig->idbrigadas."' name='id'><input type='submit' value='Inicair clase'></form></td>";
 		echo "</tr>";
 	}
@@ -321,6 +346,7 @@ function lista_brigada_oficialV($alumno){
 	echo "<th>E-mail</th>";
     echo "<th>Brigada</th>";
     echo "<th>Plan</th>";
+	echo "<th>Promedio</th>";
 	echo "<th>Asignar calificaciones</th>";
 	echo "</tr>";
 	foreach ($alumno as $key => $alum) {
@@ -330,6 +356,7 @@ function lista_brigada_oficialV($alumno){
 	echo "<td>".$alum->email."</td>";
     echo "<td>".$alum->brigada."</td>";
     echo "<td>".$alum->plan."</td>";
+    echo "<td>".$alum->promedioF."</td>";
 	echo "<td><form action='docente_calif.php' method='POST'><input type='hidden' value='".$alum->matricula."' name='id'><input type='submit' value='Calificar'></form></td>";
 	echo"</tr>";
 }
@@ -356,7 +383,6 @@ function calificarV(){
 	echo "<tr><th>Practica #7:</th><td><input type='text' name='c7' value='".$calif->cal7."' maxlength='3' onkeypress='javascript:return validarNro(event)'</td></tr>";
 	echo "<tr><th>Practica #8:</th><td><input type='text' name='c8' value='".$calif->cal8."' maxlength='3' onkeypress='javascript:return validarNro(event)'</td></tr>";
 	echo "<tr><th>Practica #9:</th><td><input type='text' name='c9' value='".$calif->cal9."' maxlength='3' onkeypress='javascript:return validarNro(event)'</td></tr>";
-	echo "<tr><th>Practica #10:</th><td><input type='text' name='c10' value='".$calif->cal10."' maxlength='3' onkeypress='javascript:return validarNro(event)'</td></tr>";
 	echo "<input type='hidden' name ='alumno' value='".$calif->alumno_matricula."''>";?>
 	
 	<tr><td colspan='2'><center><input type='submit' value='Subir calificaciones'>   <input type='button' name='cancelar' value='Cancelar' onClick = "self.location.href='javascript:history.back(1)'"></center></td>
@@ -420,7 +446,6 @@ function mis_calificaciones($alumn){
 	echo "<tr><th>Practica #7:</th><td>".$alumno->cal7."</td></tr>";
 	echo "<tr><th>Practica #8:</th><td>".$alumno->cal8."</td></tr>";
 	echo "<tr><th>Practica #9:</th><td>".$alumno->cal9."</td></tr>";
-	echo "<tr><th>Practica #10:</th><td>".$alumno->cal10."</td></tr>";
 	echo "</table>";
 }
 function actualizar_email($alumno){

@@ -24,5 +24,11 @@ function mis_alumnos($docente){
 	$alumnos = lista_alumnosD($docente);
 	lista_brigada_oficialV($alumnos);
 }
+function filtro_alumnos_doc($docente){
+	$arg = $_POST['info'];
+	$alumnos = buscar_alumnos_docente($arg, $docente);
+	//lista_alumnos($alumnos);
+	lista_brigada_oficialV($alumnos);
+}
 
 ?>

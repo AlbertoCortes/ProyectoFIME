@@ -145,7 +145,7 @@ function update_brigadaP($brigada, $datos){
 	// echo "<br>".$sql;
 $result= mysql_query($sql);
         if ($result >0){
-        	echo'<script type="text/javascript">alert("Se ha actualizado la informacion satisfactoriamente");window.location.href="../docente/docente_brigadas.php";</script>';
+        	echo'<script type="text/javascript">alert("Se ha actualizado la informacion satisfactoriamente");window.location.href="../admin/admin_brigadas.php";</script>';
                 
         }
         else {

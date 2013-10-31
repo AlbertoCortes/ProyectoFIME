@@ -17,5 +17,5 @@ $docenteModif = array();
         foreach($datosDocente as $key => $datoDocente){
         $docenteModif[]= $_POST[$datoDocente];
         }
-update_D($docente, $docenteModif);
+update_contraD($docente, $docenteModif);
 ?>

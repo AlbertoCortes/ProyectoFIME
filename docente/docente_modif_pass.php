@@ -2,9 +2,10 @@
 session_start();
 require_once("../login/valid.php");
 require_once("../login/validpriv.php");
+require_once("../update/view.php");
 validDocente();
 $usuario =  $_SESSION['usuario'];
-require_once("../action/funciones_docente.php");
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -44,8 +45,11 @@ require_once("../action/funciones_docente.php");
 				
 				<?php
 							
-							lista_brigadaR();
+							modificar_contra($usuario);
 						?>
+						<br />
+						<br />
+						
 				
 			</div>
 			
