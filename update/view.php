@@ -101,35 +101,35 @@ function modificar_brigada(){
 //	echo"</select>";
 	//echo"</td>";
 	//echo"</tr>";
-	//echo"<tr><th>Día:</th><td><select name='dia'>";
-	//for($d = 1; $d<=6; $d++)
-//	{
-	//	switch($d)
-		//{
-			//case "01": $dia = "Lunes"; break;
-			//case "02": $dia = "Martes"; break;
-			//case "03": $dia = "Miercoles"; break;
-			//case "04": $dia = "Jueves"; break;
-			//case "05": $dia = "Viernes"; break;
-			//case "06": $dia = "Sabado"; break;			
-		//}
-		//echo "<option value='$dia'>$dia</option>";
-//	}
-	//echo"<tr><th>Hora:</th><td><select name='hora'>";
-	//for($h=1; $h<=9; $h++){
-		//switch ($h) {
-			//case "01": $hora = "M1-M2"; break;
-			//case "02": $hora = "M3-M4"; break;
-			//case "03": $hora = "M5-M6"; break;
-			//case "04": $hora = "V1-V2"; break;
-			//case "05": $hora = "V3-V4"; break;
-			//case "06": $hora = "V5-V6"; break;
-			//case "07": $hora = "N1-N2"; break;
-			//case "08": $hora = "N3-N4"; break;
-			//case "09": $hora = "N5-N6"; break;		
-		//}
-		//echo "<option value='$hora'>$hora</option>";
-	//}
+	echo"<tr><th>Día:</th><td><select name='dia'>";
+	for($d = 1; $d<=6; $d++)
+	{
+		switch($d)
+		{
+			case "01": $dia = "Lunes"; break;
+			case "02": $dia = "Martes"; break;
+			case "03": $dia = "Miercoles"; break;
+			case "04": $dia = "Jueves"; break;
+			case "05": $dia = "Viernes"; break;
+			case "06": $dia = "Sabado"; break;			
+		}
+		echo "<option value='$dia'>$dia</option>";
+	}
+	echo"<tr><th>Hora:</th><td><select name='hora'>";
+	for($h=1; $h<=9; $h++){
+		switch ($h) {
+			case "01": $hora = "M1-M2"; break;
+			case "02": $hora = "M3-M4"; break;
+			case "03": $hora = "M5-M6"; break;
+			case "04": $hora = "V1-V2"; break;
+			case "05": $hora = "V3-V4"; break;
+			case "06": $hora = "V5-V6"; break;
+			case "07": $hora = "N1-N2"; break;
+			case "08": $hora = "N3-N4"; break;
+			case "09": $hora = "N5-N6"; break;		
+		}
+		echo "<option value='$hora'>$hora</option>";
+	}
 	//echo"<tr><th>Salon:</th><td><input type='text' name='Salon' value='6204' /></td></tr>";
 	echo"<tr><th>Cupo:</th><td><input type='text' name='NAlumnos' value='".$brigada->cupo."' maxlength='2' onkeypress='return validarNro(event)'/></td></tr>";
 	echo"<tr><th>Disponible:</th><td>Si<input type='radio' checked='true' name='disp' value='1'>No<input type='radio' name='disp' value='0'></td></tr>";

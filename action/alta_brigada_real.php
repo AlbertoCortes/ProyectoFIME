@@ -10,4 +10,5 @@ $maestro = $_POST['Maestro'];
 	}
 valid_brigada_real($brigada); //Esta funcion valida que la brigada introducida no exista para evitar redundancia
 inser_bigada_real($brigada, $maestro);
+insert_brigada2($brigada, $maestro);
 ?>

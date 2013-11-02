@@ -142,7 +142,7 @@ $result= mysql_query($sql);
         }  
 }
 function update_brigadaP($brigada, $datos){
-	 $sql = "UPDATE sflbf4.brigadas SET cupo = '$datos[0]', disponibilidad = '$datos[1]' WHERE idbrigadas = '$brigada'";
+	 $sql = "UPDATE sflbf4.brigadas SET dia = '$datos[0]', hora = '$datos[1]', cupo = '$datos[2]', disponibilidad = '$datos[3]' WHERE idbrigadas = '$brigada'";
 	// echo "<br>".$sql;
 $result= mysql_query($sql);
         if ($result >0){

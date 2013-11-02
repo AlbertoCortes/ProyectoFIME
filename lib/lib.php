@@ -85,12 +85,22 @@ function insert_brigada($brigada, $dia, $hora, $salon, $cupo, $disponibilidad, $
 		echo'<script type="text/javascript">alert("ERROR. Existe una inconsistencia en la informacion");window.location.href="javascript:window.history.back()";</script>';
 	}
 }
+function insert_brigada2($brigada, $docente){
+	$sql = "INSERT INTO sflbf4.brigadas (idbrigadas,disponibilidad, docente_num_empleado) 
+			VALUES('$brigada','1', '$docente')";
+	$result = mysql_query($sql);
+	if($result > 0){
+		echo'<script type="text/javascript">alert("La brigada ha sido dado de alta correctamente");window.location.href="javascript:window.history.back()";</script>';
+	}else{
+		echo'<script type="text/javascript">alert("ERROR. Existe una inconsistencia en la informacion");window.location.href="javascript:window.history.back()";</script>';
+	}
+}
 function inser_bigada_real($brigada, $docente){
 	$sql = "INSERT INTO sflbf4.brigada_real (idbrigada_real, docente_num_empleado) 
 			VALUES('$brigada', '$docente')";
 	$result = mysql_query($sql);
 	if($result > 0){
-		echo'<script type="text/javascript">alert("La brigada ha sido dado de alta correctamente");window.location.href="javascript:window.history.back()";</script>';
+		//echo'<script type="text/javascript">alert("La brigada ha sido dado de alta correctamente");window.location.href="javascript:window.history.back()";</script>';
 	}else{
 		echo'<script type="text/javascript">alert("ERROR. Existe una inconsistencia en la informacion");window.location.href="javascript:window.history.back()";</script>';
 	}
