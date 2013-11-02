@@ -230,7 +230,36 @@ function lista_brigadas_reales($brigadas){
 }
 	echo "</table>";
 }
-
+function practicas($practicas){
+	$pr = select_admin();
+	function selact($pr, $key){
+			if($pr == ($key+1)){
+			$res=  "<img src='../resources/yes.png'>";
+				}
+			elseif($pr != ($key+1)){
+			$res=  "<img src='../resources/no.png'>";
+	}
+	return $res;
+	}
+	echo "<table border=1>";
+	echo "<tr>";
+	echo "<th>No. de Practica</th>";
+	echo "<th>Nombre</th>";
+	echo "<th>Status</th>";
+	echo "<th>Activar</th>";
+	echo "</tr>";
+	$i = 1;
+	foreach ($practicas as $key => $prac) {
+	$status = selact($pr->practica, $key);
+	echo "<tr>";
+	echo "<td>".$prac->idpracticas."</td>";
+	echo "<td>".$prac->nombre."</td>";
+	echo "<td>".$status."</td>";
+	echo "<td><form  action='../update/activarPractica.php' method='POST'><input type='hidden' value='".$prac->idpracticas."' name='id'><input type='submit' value='Activar'></form></td>";
+	echo"</tr>";
+}
+	echo "</table>";
+}
 
 function form_fliter_docente(){
 

@@ -2,6 +2,7 @@
 session_start();
 require_once("../login/valid.php");
 require_once("../login/validpriv.php");
+require_once ("../action/reportes.php");
 validAdmin();
 $usuario =  $_SESSION['usuario'];
 
@@ -21,11 +22,12 @@ $usuario =  $_SESSION['usuario'];
 	<div class="content">
 		<div id="divnav"> 
 			<ul id="nav">
+				<li><a href="admin.php"> Inicio </a></li>	
 				<li><a href="admin_docentes.php">Docentes</a></li>
 				<li><a href="admin_alumnos.php">Alumnos</a></li>
 				<li><a href="admin_brigadas.php">Brigadas</a></li>
 				<li><a href="admin_oficial.php">Brigadas Oficiales</a></li>
-				<li><a href="admin_avisos.php">Avisos</a></li>						
+				
 			</ul>
 		</div>
 		
@@ -36,7 +38,11 @@ $usuario =  $_SESSION['usuario'];
 		
 			<div id="contenido">
 			<h2>BIENVENIDO AL NUEVO SISTEMA DE INSCRIPCIONES PARA EL LABORATORIO DE FISICA 4</h2><br />
-			
+				Por favor seleccione la practica a realizar
+			<?php
+							
+							listar_practicas();		
+						?>
 						</div>
 		
 		

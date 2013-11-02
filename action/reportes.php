@@ -38,6 +38,10 @@ function filtro_brigada_real(){
 	$brigada = buscar_brigadas_reales($arg);
 	lista_brigadas_reales($brigada);
 }
+function listar_practicas(){
+	$practicas = listar_practicasL();
+	practicas($practicas);
+}
 //docentes();
 //alumnos();
 //brigadas();

@@ -105,6 +105,15 @@ function inser_bigada_real($brigada, $docente){
 		echo'<script type="text/javascript">alert("ERROR. Existe una inconsistencia en la informacion");window.location.href="javascript:window.history.back()";</script>';
 	}
 }
+function select_admin(){
+	$sql = "SELECT practica FROM administrador LIMIT 1";
+	$result = mysql_query($sql);
+	$admin = null;
+	while($row = mysql_fetch_object($result)){
+		$admin = $row;
+	}
+	return $admin;
+}
 /*
  * INSERCIONES EN BASE DE DATOS   ---FIN---
  */
@@ -123,6 +132,17 @@ function listar_docentes(){
 		$i++;
 	}
 	return $docente;
+}
+function listar_practicasL(){
+	$sql = "SELECT * FROM sflbf4.practicas";
+	$result = mysql_query($sql);
+	$practicas = array();
+	$i = 0;
+	while($row = mysql_fetch_object($result)){
+		$practicas[$i] = $row;
+		$i++;
+	}
+	return $practicas;
 }
 function listar_alumnos(){
 	$sql = "SELECT * FROM sflbf4.alumno";

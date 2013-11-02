@@ -115,7 +115,7 @@ $result= mysql_query($sql);
 function update_alumno_email($alumno, $datos){
 	 $sql = "UPDATE sflbf4.alumno SET email='$datos[0]' WHERE matricula = '$alumno'";
 	// echo "<br>".$sql;
-$result= mysql_query($sql);
+	$result= mysql_query($sql);
         if ($result >0){
                 //echo "Se ha ingresado la informacion exitosamente";
                 echo'<script type="text/javascript">alert("Se ha actualizado la informacion satisfactoriamente, los cambios se veran reflejados una ves que inicies sesion nuevamente");window.location.href="../alumno/alumno.php";</script>';
@@ -177,5 +177,17 @@ function drop_docentes(){
 		return $docentes;
 }
 
-
+function activar_practica($practica){
+	 $sql = "UPDATE sflbf4.administrador SET practica = '$practica'";
+	// echo "<br>".$sql;
+	//echo $sql;
+	$result= mysql_query($sql);
+        if ($result >0){
+        	echo'<script type="text/javascript">alert("Se ha activado la pracita'.$practica.'");window.location.href="../admin/admin.php";</script>';
+                
+        }
+        else {
+                echo  "Existe una inconsistencia en informacion";
+        }  
+}
 ?>

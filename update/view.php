@@ -50,7 +50,7 @@ function modificar_alumno(){
 	echo"<tr><th>Nombre:</th><td><input type='text' name='nombre' value='".$matricula->nombre."' onkeypress='return soloLetras(event)'/></td></tr>";
 	echo "<tr><th>Brigada:</th><td>";
 	echo "<select name='brigada'>";
-	echo "<option value = '".$matricula->brigada_real_idbrigada_real."'>".$matricula->brigada_real_idbrigada_real."</option>";
+	echo "<option value = '".$matricula->brigada."'>".$matricula->brigada."</option>";
 		$pro = drop_brigada_real();
 			foreach($pro as $key =>$prv){
 				echo "<option value ='{$prv->idbrigada_real}'>{$prv->idbrigada_real}</option>";

@@ -13,7 +13,7 @@ $disp    = $_POST['disp'];
 		echo'<script type="text/javascript">alert("ERROR: No deje campos vacios");window.location.href="javascript:window.history.back()";</script>'; 
 		die();  
 	}
-valid_brigada($brigada); //Esta funcion valida que la brigada introducida no exista para evitar redundancia
-valid_hora($dia, $hora); // Funcion que valida que no se empalmen horas
+//valid_brigada($brigada); //Esta funcion valida que la brigada introducida no exista para evitar redundancia
+//valid_hora($dia, $hora); // Funcion que valida que no se empalmen horas
 insert_brigada($brigada, $dia, $hora, $salon, $cupo, $disp, $maestro);
 ?>
