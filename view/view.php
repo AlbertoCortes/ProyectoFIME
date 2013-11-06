@@ -288,6 +288,14 @@ function form_filter_alumno_docente(){
 	echo "</br></br>";
 	echo "</form>";
 }
+function form_filter_alumno_docenteP(){
+	echo "<form action='../docenteP/docenteP_alumnos_search.php' method='post'>";
+	echo "</br></br>";
+	echo "Buscar alumno por matricula: <input type= 'text' id='info' name='info'>"; 
+	echo "<input type= 'submit'  value='BUSCAR' >"; 
+	echo "</br></br>";
+	echo "</form>";
+}
 function form_filter_brigada(){
 	echo "<form action='../admin/admin_brigadas_search.php' method='post'>";
 	echo "</br></br>";
@@ -322,6 +330,14 @@ function inicioDoc($docente){
 	echo "<tr><th>E-mail:</th><td>".$docente->email."</td></tr>";
 	echo "<tr><td colspan='2'><center><form action='docente_actualizar.php'><input type = 'submit' value = 'Actualizar mis datos'></center></td></tr>";
 }
+function inicioDocP($docente){
+	echo "<table>";
+	echo "<tr><th>Numero de empleado:</th><td>".$docente->num_empleado."</td></tr>";
+	echo "<tr><th>Docente:</th><td>".$docente->nombre."</td></tr>";
+	echo "<tr><th>Telefono:</th><td>".$docente->telefono."</td></tr>";
+	echo "<tr><th>E-mail:</th><td>".$docente->email."</td></tr>";
+	echo "<tr><td colspan='2'><center><form action='docenteP_actualizar.php'><input type = 'submit' value = 'Actualizar mis datos'></center></td></tr>";
+}
 function mis_brigadasV($brigadas){
 	function check($disp){
 		if($disp == 1){
@@ -354,6 +370,38 @@ return $res;
 	}
 	echo "</table>";
 }
+function mis_brigadasVP($brigadas){
+	function check($disp){
+		if($disp == 1){
+			$res=  "<img src='../resources/yes.png'>";
+		}
+elseif($disp == 0){
+	$res=  "<img src='../resources/no.png'>";
+}
+return $res;
+	}
+	echo "<table border=1>";
+	echo "<tr>";
+	echo "<th>Brigada</th>";
+	echo "<th>Dia</ht>";
+	echo "<th>Hora</ht>";
+	echo "<th>Cupo</ht>";
+	echo "<th>Disponibilidad</th>";
+	echo "<th>Iniciar Clase</th></tr>";
+	foreach ($brigadas as $key => $brig) {
+		$disp=check($brig->disponibilidad);
+		echo "<tr>";
+		echo "<td>".$brig->idbrigadas."</td>";
+		echo "<td>".$brig->dia."</td>";
+		echo "<td>".$brig->hora."</td>";
+		echo "<td>".$brig->cupo."</td>";
+		echo "<td><center>".$disp."</center></td>";
+		//echo "<td><form  action='../docente/docente_brigadas_edit.php' method='POST'><input type='hidden' value='".$brig->idbrigadas."' name='id'><input type='submit' value='Modificar'></form></td>";
+		echo "<td><form  action='../docenteP/docenteP_clase.php' method='POST'><input type='hidden' value='".$brig->idbrigadas."' name='id'><input type='submit' value='Inicair clase'></form></td>";
+		echo "</tr>";
+	}
+	echo "</table>";
+}
 function mis_brigadas_oficialesV($brigadas){
 	echo "<table border=1>";
 	echo "<tr>";
@@ -364,6 +412,20 @@ function mis_brigadas_oficialesV($brigadas){
 		echo "<tr>";
 		echo "<td>".$brig->idbrigada_real."</td>";
 		echo "<td><form  action='../docente/docente_brigadas_oficiales_lista.php' method='POST'><input type='hidden' value='".$brig->idbrigada_real."' name='id'><input type='submit' value='Ver lista'></form></td>";
+		echo "</tr>";
+	}
+	echo "</table>";
+}
+function mis_brigadas_oficialesVP($brigadas){
+	echo "<table border=1>";
+	echo "<tr>";
+	echo "<th>Brigada</th>";
+	echo "<th>Ver lista de alumnos</ht>";
+	echo "</tr>";
+	foreach ($brigadas as $key => $brig) {
+		echo "<tr>";
+		echo "<td>".$brig->idbrigada_real."</td>";
+		echo "<td><form  action='../docenteP/docenteP_brigadas_oficiales_lista.php' method='POST'><input type='hidden' value='".$brig->idbrigada_real."' name='id'><input type='submit' value='Ver lista'></form></td>";
 		echo "</tr>";
 	}
 	echo "</table>";
@@ -388,6 +450,30 @@ function lista_brigada_oficialV($alumno){
     echo "<td>".$alum->plan."</td>";
     echo "<td>".$alum->promedioF."</td>";
 	echo "<td><form action='docente_calif.php' method='POST'><input type='hidden' value='".$alum->matricula."' name='id'><input type='submit' value='Calificar'></form></td>";
+	echo"</tr>";
+}
+	echo "</table>";	
+}
+function lista_brigada_oficialVP($alumno){
+	echo "<table border=1>";	
+	echo "<tr>";
+	echo "<th>Matricula</th>";
+	echo "<th>Nombre</th>";
+	echo "<th>E-mail</th>";
+    echo "<th>Brigada</th>";
+    echo "<th>Plan</th>";
+	echo "<th>Promedio</th>";
+	echo "<th>Asignar calificaciones</th>";
+	echo "</tr>";
+	foreach ($alumno as $key => $alum) {
+	echo "<tr>";
+	echo "<td>".$alum->matricula."</td>";
+	echo "<td>".$alum->nombre."</td>";
+	echo "<td>".$alum->email."</td>";
+    echo "<td>".$alum->brigada."</td>";
+    echo "<td>".$alum->plan."</td>";
+    echo "<td>".$alum->promedioF."</td>";
+	echo "<td><form action='docenteP_calif.php' method='POST'><input type='hidden' value='".$alum->matricula."' name='id'><input type='submit' value='Calificar'></form></td>";
 	echo"</tr>";
 }
 	echo "</table>";	
@@ -420,7 +506,7 @@ function calificarV(){
 	echo "</table>";
 	
 }
-function lista($alumnos){
+function lista($alumnos, $brigada){
 	echo "<table>";
 	echo "<tr>";
 	echo "<th>Matricula</th>";
@@ -435,6 +521,9 @@ function lista($alumnos){
 	}
 	echo "</table>";
 	echo "<br />";
+	echo "<input type='hidden' name ='dia' value='".$brigada->dia."''>";
+	echo "<input type='hidden' name ='hora' value='".$brigada->hora."''>";
+	echo "<input type='hidden' name ='brigada' value='".$brigada->idbrigadas."''>";
 	echo "<center><input type='submit' value='Capturar Asistencias'></form><center>";
 }
 /*
@@ -513,6 +602,56 @@ function brigadas_disponibles_alumno($brigadas){
 	echo "</table>";
 	echo "<br />";
 	echo "<center><input type='submit' value='inscribir'></center>";
+}
+
+function mis_practicas($practicas, $alumno){
+	$pr = select_admin();
+	$al = select_alumno($alumno);
+	//print_r($al);
+	function selact($pr, $key, $al){
+			if($pr == ($key+1)){
+				switch ($al->status){
+					case 0:
+						$res=  "<a href = 'alumno_inscribir.php'><center><img src='../resources/cau.png' title='Aun no estas inscrito en la practica'></center> </a>";
+						return $res;
+					break;
+					case 1:
+						$res=  "<center><img src='../resources/yes.png' title='Ya estas inscrito en la practica'></center>";
+						return $res;
+					break;
+				}}
+			/*	if($al->status == 0){
+					//echo "Vacio";
+					$res=  "<a href = 'alumno_inscribir.php'><img src='../resources/cau.png' title='Aun no estas inscrito en la practica'> </a>";
+					return $res;
+				}
+				if(!emp){
+					 $res=  "<img src='../resources/yes.png' title='Ya estas inscrito en la practica'>";
+					return $res;
+				}*/
+elseif($pr != ($key+1)){
+			$res=  "";
+			return $res;
+	}}
+
+	echo "<table border=1>";
+	echo "<tr>";
+	echo "<th>No. de Practica</th>";
+	echo "<th>Nombre</th>";
+	echo "<th>Status</th>";
+	//echo "<th>Activar</th>";
+	echo "</tr>";
+	$i = 1;
+	foreach ($practicas as $key => $prac) {
+	$status = selact($pr->practica, $key, $al);
+	echo "<tr>";
+	echo "<td>".$prac->idpracticas."</td>";
+	echo "<td>".$prac->nombre."</td>";
+	echo "<td>".$status."</td>";
+	//  echo "<td><form  action='../update/activarPractica.php' method='POST'><input type='hidden' value='".$prac->idpracticas."' name='id'><input type='submit' value='Activar'></form></td>";
+	echo"</tr>";
+}
+	echo "</table>";
 }
  
  

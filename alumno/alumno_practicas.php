@@ -2,7 +2,7 @@
 session_start();
 require_once("../login/valid.php");
 require_once("../login/validpriv.php");
-require_once("../update/view.php");
+require_once("../action/funciones_alumno.php");
 validAlumno();
 $usuario =  $_SESSION['usuario'];
 
@@ -43,8 +43,8 @@ $usuario =  $_SESSION['usuario'];
 			<div id="tabladocentes">
 				
 				<?php
+						listar_practicas($usuario->matricula);
 							
-							modificar_contraAl($usuario);
 						?>
 				
 			</div>

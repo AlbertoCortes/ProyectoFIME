@@ -23,6 +23,7 @@ function import_mysql($archivo){
 	$result = mysql_query($sql);
 	if($result > 0){
 		import_calif();
+		import_asist();
 		echo'<script type="text/javascript">alert("La operacion se ha llevado a cabo con exito");window.location.href="javascript:window.history.back()";</script>';
 	}
 	else {
@@ -31,6 +32,10 @@ function import_mysql($archivo){
 }
 function import_calif(){
 	$sql = "INSERT INTO sflbf4.calificaciones(alumno_matricula) SELECT matricula FROM sflbf4.alumno";
+	$result = mysql_query($sql);
+}
+function import_asist(){
+	$sql = "INSERT INTO sflbf4.asistencia(alumno_matricula) SELECT matricula FROM sflbf4.alumno";
 	$result = mysql_query($sql);
 }
 import_mysql($archivo);

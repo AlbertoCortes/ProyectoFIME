@@ -19,6 +19,10 @@ echo $ref;
 		session_destroy();
 		header('Location: ../admin/index.php');
 		break;
+	case 3:
+		session_destroy();
+		header('Location: ../docente/index.php');
+		break;
   }
  
  

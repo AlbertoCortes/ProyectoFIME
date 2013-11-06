@@ -114,6 +114,16 @@ function select_admin(){
 	}
 	return $admin;
 }
+function select_alumno($alumno){
+	$sql = "SELECT status FROM alumno WHERE matricula = '$alumno'";
+	$result = mysql_query($sql);
+	$alumno = null;
+	//echo $result;
+while($row = mysql_fetch_object($result)){
+		$alumno = $row;
+}
+	return $alumno;
+}
 /*
  * INSERCIONES EN BASE DE DATOS   ---FIN---
  */
@@ -328,8 +338,17 @@ function lista_brigada_oficial($brigada){
 	}
 	return $alumnos;
 }
+function seleccionar_brigadaP($brigada){
+	$sql = "SELECT * FROM sflbf4.brigadas WHERE idbrigadas = '$brigada'";
+	$result = mysql_query($sql);
+	$brigada = null;
+	while($row = mysql_fetch_object($result)){
+		$brigada = $row;
+	}
+	return $brigada;
+}
 function lista_brigada($brigada){
-	$sql = "SELECT * FROM sflbf4.alumno  WHERE brigadaP = '$brigada'";
+	$sql = "SELECT alumno.*, brigadas.* FROM sflbf4.brigadas INNER JOIN sflbf4.alumno ON alumno.brigadaP = brigadas.idbrigadas  WHERE brigadaP = '$brigada'";
 	$result = mysql_query($sql);
 	$alumnos = array();
 	$i = 0;
