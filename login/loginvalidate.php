@@ -26,7 +26,7 @@ function validDocente($user, $pass){
 	return $usuario;
 }
 function validAlumno($user, $pass){
-	$sql= "SELECT matricula, nombre, pass, email, brigada,plan,  privilegios 
+	$sql= "SELECT matricula, nombre, pass, email, brigada,plan,  privilegios, brigadaP 
 	FROM sflbf4.alumno WHERE matricula ='$user' AND pass = '$pass' LIMIT 1";
 	$result=mysql_query($sql);
 	$usuario = null;

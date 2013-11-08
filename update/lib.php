@@ -98,7 +98,7 @@ $result= mysql_query($sql);
         }  
 }
 function update_alumno($matricula, $datos){
-	 $sql = "UPDATE sflbf4.alumno SET nombre='$datos[0]', email ='$datos[1]', brigada_real_idbrigada_real='$datos[2]' WHERE matricula = '$matricula'";
+	 $sql = "UPDATE sflbf4.alumno SET nombre='$datos[0]', email ='$datos[1]', brigada='$datos[2]' WHERE matricula = '$matricula'";
 	// echo "<br>".$sql;
 $result= mysql_query($sql);
         if ($result >0){
@@ -128,7 +128,7 @@ function update_alumno_email($alumno, $datos){
         }  
 }
 function update_brigada($brigada, $datos){
-	 $sql = "UPDATE sflbf4.brigada_real SET idbrigada_real='$datos[0]', docente_num_empleado ='$datos[1]' WHERE idbrigada_real = '$brigada'";
+	 $sql = "UPDATE sflbf4.brigada_real SET idbrigada_real='$datos[0]', empleado ='$datos[1]' WHERE idbrigada_real = '$brigada'";
 	// echo "<br>".$sql;
 $result= mysql_query($sql);
         if ($result >0){

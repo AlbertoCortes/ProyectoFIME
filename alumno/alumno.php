@@ -3,6 +3,7 @@ session_start();
 require_once("../login/valid.php");
 require_once("../login/validpriv.php");
 require_once("../view/view.php");
+require_once("../action/funciones_alumno.php");
 validAlumno();
 $usuario =  $_SESSION['usuario'];
 
@@ -45,6 +46,10 @@ $usuario =  $_SESSION['usuario'];
 				<?php
 							
 							inicioAl($usuario);
+						?>
+											<?php
+							
+							proxbrig($usuario->matricula);
 						?>
 				
 			</div>

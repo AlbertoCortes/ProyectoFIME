@@ -9,4 +9,10 @@ function listar_practicas($usuario){
 	$practicas = listar_practicasL();
 	mis_practicas($practicas, $usuario);
 }
+function proxbrig($alumno){
+	$al = select_alumnoB($alumno);
+	$brigada = select_brigada($al);
+prox($brigada);
+}
+
 ?>

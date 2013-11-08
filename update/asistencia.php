@@ -48,18 +48,23 @@ function captura($alumno, $status, $docente, $dia, $hora, $brigada, $practica){
 	$diaA = "dia".$practica;
 	$horaA = "hora".$practica;
 	$brigadaA = "brigada".$practica;
-	$sql = "UPDATE sflbf4.asistencia SET 	alumno_matricula ='$alumno', 
+	$sql = "UPDATE sflbf4.asistencia SET 	matricula ='$alumno', 
 											".$pract." ='$status',
 											".$fechaA." ='$fecha',
 											".$maestro."= '$docente',
 											".$diaA." = '$dia',
 											".$horaA."= '$hora',
-											".$brigadaA." = '$brigada' WHERE alumno_matricula = '$alumno';";
+											".$brigadaA." = '$brigada' WHERE matricula = '$alumno';";
 										//	echo $sql;
 		$result= mysql_query($sql);
 }
+function status($alumno){
+	$sql = "UPDATE sflbf4.alumno SET status='0', brigadaP=NULL  WHERE matricula = '$alumno';";
+	$result = mysql_query($sql);
+}
 for ($i = 0 ; $i < count($alumno); $i ++){
 	captura($alumno[$i], $status[$i], $docente, $dia, $hora, $brigada,$pra);
+	status($alumno[$i]);
 }
 		echo'<script type="text/javascript">alert("Las asistencias se han subido correctamente");window.location.href="javascript:window.history.back()";</script>';
 

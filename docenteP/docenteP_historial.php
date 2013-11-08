@@ -1,10 +1,9 @@
 <?php
 session_start();
-require_once("../action/reportes.php");
-require_once("../view/view.php");
 require_once("../login/valid.php");
 require_once("../login/validpriv.php");
-validAdmin();
+require_once("../view/view.php");
+validDocenteP();
 $usuario =  $_SESSION['usuario'];
 
 ?>
@@ -19,37 +18,41 @@ $usuario =  $_SESSION['usuario'];
 <body>
 
 <div class="container">
-	<div id="top-bar"> <div id="bar-text">Sistema de Inscripciones -Administrador- (Brigadas)</div><div id="botonsalir">Bienvenido,  <?php echo $usuario->nombre; ?>   <a href="#" title="Editar mis datos" class="Bca">  Editar  </a>    <a href="../login/logout.php" title="Salir" class="BcaE">  Salir  </a></div></div>				
+	<div id="top-bar"> <div id="bar-text">Sistema de Inscripciones -Docente-</div><div id="botonsalir">Bienvenido,  <?php echo $usuario->nombre; ?>  <a href="docenteP_modif_pass.php" title="Cambiar mi password" class="Bca">  Editar  </a>    <a href="../login/logout.php" title="Salir" class="BcaE">  Salir  </a></div></div>				
 	<div class="content">
-		<div id="divnav"> 
+		<!--<div id="divnav"> 
 			<ul id="nav">
-				<li><a href="admin.php"> Inicio </a></li>	
 				<li><a href="admin_docentes.php">Docentes</a></li>
 				<li><a href="admin_alumnos.php">Alumnos</a></li>
 				<li><a href="admin_brigadas.php">Brigadas</a></li>
 				<li><a href="admin_oficial.php">Brigadas Oficiales</a></li>
+				<li><a href="admin_avisos.php">Avisos</a></li>						
 			</ul>
-		</div>
+		</div>-->
 		
 				<div id='cssmenu'>
 					<ul>
-			  			  <li class="active"><a href='admin_brigadas.php'><span>Brigadas </span></a></li>
-			  			 <li class="last"><a href= 'admin_brigadas_new.php'><span>Nueva Brigada</span></a></li>
+			  			 <li class="active"><a href='docenteP.php'><span>Inicio</span></a></li>
+			  			 <li><a href="docenteP_brigadas.php"><span>Brigadas</span></a></li>
+			  			 <li><a href="docenteP_brigadas_oficiales.php"><span>Brigadas oficiales</span></a></li>
+			  			 <li><a href="docenteP_alumnos.php"><span>Mis alumnos</span></a></li>
 					</ul>
 				</div>
 		
-		<div id="contenido">
-			<h2>Lista de brigadas no oficiales disponibles en el sistema</h2>
-			<?php form_filter_brigada(); ?>
+			<div id="contenido">
+			<h2>BIENVENIDO AL NUEVO SISTEMA DE INSCRIPCIONES PARA EL LABORATORIO DE FISICA 4</h2><br />
 			<div id="tabladocentes">
 				
 				<?php
 							
-							brigadas();		
+							inicioDocP($usuario);
 						?>
 				
 			</div>
+			
 						</div>
+		
+		
       <!-- end .content --></div>
   <!-- end .container --></div>
 </body>

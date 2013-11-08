@@ -65,7 +65,7 @@ function modificar_alumno(){
 }
 function modificar_brigada_real(){
 	$brigada = seleccionar_brigada($_POST['id']);
-	$docente = select_docente($brigada->docente_num_empleado);
+	$docente = select_docente($brigada->empleado);
 	echo "<table>";
 	echo "<form name = 'new_brigada_real' action = '../update/update_brigada.php' method = 'POST'>";
 	echo"<tr><th>Brigada Oficial:</th><td><input type='text' readonly='readonly' name='Nobrigada' maxlength='3' value='".$brigada->idbrigada_real."'/></td></tr>"; 
@@ -101,7 +101,8 @@ function modificar_brigada(){
 //	echo"</select>";
 	//echo"</td>";
 	//echo"</tr>";
-	echo"<tr><th>Día:</th><td><select name='dia'>";
+	echo"<tr><th>Día:</th><td><select name='dia' >";
+	echo "<option value='$brigada->dia'>$brigada->dia</option>";
 	for($d = 1; $d<=6; $d++)
 	{
 		switch($d)
@@ -116,6 +117,7 @@ function modificar_brigada(){
 		echo "<option value='$dia'>$dia</option>";
 	}
 	echo"<tr><th>Hora:</th><td><select name='hora'>";
+	echo "<option value='$brigada->hora' selected>$brigada->hora</option>";
 	for($h=1; $h<=9; $h++){
 		switch ($h) {
 			case "01": $hora = "M1-M2"; break;

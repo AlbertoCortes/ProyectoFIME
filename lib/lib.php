@@ -70,13 +70,25 @@ function insert_alumno($matricula, $nombre, $plan, $pass, $email, $brigada_real)
 			VALUES('$matricula', '$nombre', '$plan', '$pass', '$email', '0', '$brigada_real', NULL)";
 	$result = mysql_query($sql);
 	if($result > 0){
+		insert_asistencia($matricula);
+		insert_calificacion($matricula);
 		echo'<script type="text/javascript">alert("El alumno ha sido dado de alta correctamente");window.location.href="javascript:window.history.back()";</script>';
 	}else{
 		echo'<script type="text/javascript">alert("ERROR. Existe una inconsistencia en la informacion");window.location.href="javascript:window.history.back()";</script>';
 	}
 }
+function insert_asistencia($matricula){
+	$sql = "INSERT INTO sflbf4.asistencia (matricula) 
+			VALUES('$matricula')";
+	$result = mysql_query($sql);
+}
+function insert_calificacion($matricula){
+	$sql = "INSERT INTO sflbf4.calificaciones (matricula) 
+			VALUES('$matricula')";
+	$result = mysql_query($sql);
+}
 function insert_brigada($brigada, $dia, $hora, $salon, $cupo, $disponibilidad, $encargado){
-	$sql = "INSERT INTO sflbf4.brigadas (idbrigadas, dia, hora, salon, cupo, disponibilidad, docente_num_empleado) 
+	$sql = "INSERT INTO sflbf4.brigadas (idbrigadas, dia, hora, salon, cupo, disponibilidad, empleado) 
 			VALUES('$brigada', '$dia', '$hora', '$salon', '$cupo', '$disponibilidad', '$encargado')";
 	$result = mysql_query($sql);
 	if($result > 0){
@@ -86,8 +98,8 @@ function insert_brigada($brigada, $dia, $hora, $salon, $cupo, $disponibilidad, $
 	}
 }
 function insert_brigada2($brigada, $docente){
-	$sql = "INSERT INTO sflbf4.brigadas (idbrigadas,disponibilidad, docente_num_empleado) 
-			VALUES('$brigada','1', '$docente')";
+	$sql = "INSERT INTO sflbf4.brigadas (idbrigadas,disponibilidad, empleado) 
+			VALUES('$brigada','0', '$docente')";
 	$result = mysql_query($sql);
 	if($result > 0){
 		echo'<script type="text/javascript">alert("La brigada ha sido dado de alta correctamente");window.location.href="javascript:window.history.back()";</script>';
@@ -96,7 +108,7 @@ function insert_brigada2($brigada, $docente){
 	}
 }
 function inser_bigada_real($brigada, $docente){
-	$sql = "INSERT INTO sflbf4.brigada_real (idbrigada_real, docente_num_empleado) 
+	$sql = "INSERT INTO sflbf4.brigada_real (idbrigada_real, empleado) 
 			VALUES('$brigada', '$docente')";
 	$result = mysql_query($sql);
 	if($result > 0){
@@ -124,6 +136,7 @@ while($row = mysql_fetch_object($result)){
 }
 	return $alumno;
 }
+
 /*
  * INSERCIONES EN BASE DE DATOS   ---FIN---
  */
@@ -167,7 +180,7 @@ function listar_alumnos(){
 }
 function listar_brigadas(){
 	//$sql = "SELECT * FROM sflbf4.brigadas";
-	$sql = "SELECT brigadas.idbrigadas, brigadas.dia, brigadas.hora, brigadas.cupo, brigadas.disponibilidad, docente.nombre FROM docente INNER JOIN brigadas ON brigadas.docente_num_empleado = num_empleado ";
+	$sql = "SELECT brigadas.idbrigadas, brigadas.dia, brigadas.hora, brigadas.cupo, brigadas.disponibilidad, docente.nombre FROM docente INNER JOIN brigadas ON brigadas.empleado = num_empleado ";
 	$result = mysql_query($sql) ;
 	$brigada = array();
 	$i = 0;
@@ -178,7 +191,7 @@ function listar_brigadas(){
 	return $brigada;
 }
 function listar_brigadas_oficiales(){
-	$sql = "SELECT brigada_real.idbrigada_real, docente.nombre FROM docente INNER JOIN brigada_real ON brigada_real.docente_num_empleado = num_empleado ";
+	$sql = "SELECT brigada_real.idbrigada_real, docente.nombre FROM docente INNER JOIN brigada_real ON brigada_real.empleado = num_empleado ";
 	$result = mysql_query($sql) ;
 	$brigada = array();
 	$i = 0;
@@ -223,8 +236,8 @@ function buscar_alumnos($arg){
 function buscar_alumnos_docente($arg, $docente){
 	//$sql = "SELECT * FROM alumno WHERE matricula = '$arg' OR nombre = '$arg' OR email = '$arg' OR brigada = '$arg'";
 	//$sql = "SELECT alumno.*, calificaciones.promedioF FROM calificaciones INNER JOIN alumno ON alumno.matricula = calificaciones.alumno_matricula WHERE ";
-	$sql = "SELECT alumno.*, calificaciones.promedioF FROM calificaciones INNER JOIN alumno ON alumno.matricula = calificaciones.alumno_matricula WHERE 
- brigada = ANY(SELECT idbrigada_real FROM brigada_real WHERE brigada_real.docente_num_empleado =  '$docente') AND matricula = '$arg'";
+	$sql = "SELECT alumno.*, calificaciones.promedioF FROM calificaciones INNER JOIN alumno ON alumno.matricula = calificaciones.matricula WHERE 
+ brigada = ANY(SELECT idbrigada_real FROM brigada_real WHERE brigada_real.empleado =  '$docente') AND matricula = '$arg'";
 	$result = mysql_query($sql);
 	//echo $sql;
 	$alumno = array();
@@ -237,8 +250,8 @@ function buscar_alumnos_docente($arg, $docente){
 }
 function buscar_brigadas($arg){
 	//$sql = "SELECT * FROM brigadas WHERE idbrigadas = '$arg' OR dia = '$arg' OR hora = '$arg' OR salon = '$arg' OR cupo = '$arg' OR docente_num_empleado = '$arg'";
-	$sql = "SELECT brigadas.idbrigadas, brigadas.dia, brigadas.hora, brigadas.cupo, docente.nombre FROM docente INNER JOIN brigadas ON brigadas.docente_num_empleado = num_empleado WHERE 
-	idbrigadas = '$arg' OR dia = '$arg' OR hora = '$arg' OR salon = '$arg' OR cupo = '$arg' OR docente_num_empleado = '$arg' OR docente.nombre = '$arg'
+	$sql = "SELECT brigadas.idbrigadas, brigadas.dia, brigadas.hora, brigadas.cupo, docente.nombre FROM docente INNER JOIN brigadas ON brigadas.empleado = num_empleado WHERE 
+	idbrigadas = '$arg' OR dia = '$arg' OR hora = '$arg' OR salon = '$arg' OR cupo = '$arg' OR empleado = '$arg' OR docente.nombre = '$arg'
 	ORDER BY idbrigadas DESC";
 	$result = mysql_query($sql);
 	$brigada = array();
@@ -251,8 +264,8 @@ function buscar_brigadas($arg){
 }
 function buscar_brigadas_reales($arg){
 	//$sql = "SELECT * FROM brigadas WHERE idbrigadas = '$arg' OR dia = '$arg' OR hora = '$arg' OR salon = '$arg' OR cupo = '$arg' OR docente_num_empleado = '$arg'";
-	$sql = "SELECT brigada_real.idbrigada_real, docente.nombre FROM docente INNER JOIN brigada_real ON brigada_real.docente_num_empleado = num_empleado WHERE
-	idbrigada_real = '$arg' OR docente_num_empleado = '$arg' OR docente.nombre = '$arg'";
+	$sql = "SELECT brigada_real.idbrigada_real, docente.nombre FROM docente INNER JOIN brigada_real ON brigada_real.empleado = num_empleado WHERE
+	idbrigada_real = '$arg' OR empleado = '$arg' OR docente.nombre = '$arg'";
 	$result = mysql_query($sql);
 	$brigada = array();
 	$i = 0;
@@ -303,7 +316,7 @@ function drop_brigada_real(){
  * FUNCIONES PARA DOCENTE   ---INICIO---
 */
 function mis_brigadas($docente){
-	$sql = "SELECT * FROM sflbf4.brigadas WHERE brigadas.docente_num_empleado = '$docente'";
+	$sql = "SELECT * FROM sflbf4.brigadas WHERE brigadas.empleado = '$docente'";
 	//echo $sql;
 	$result = mysql_query($sql);
 	$mis_brigadas = array();
@@ -315,7 +328,7 @@ function mis_brigadas($docente){
 	return $mis_brigadas;
 }
 function mis_brigadas_oficiales($docente){
-	$sql = "SELECT * FROM sflbf4.brigada_real WHERE docente_num_empleado = '$docente'";
+	$sql = "SELECT * FROM sflbf4.brigada_real WHERE empleado = '$docente'";
 	$result = mysql_query($sql);
 	$mis_brigadas = array();
 	$i = 0;
@@ -327,7 +340,7 @@ function mis_brigadas_oficiales($docente){
 }
 function lista_brigada_oficial($brigada){
 	//$sql = "SELECT * FROM sflbf4.alumno  WHERE brigada = '$brigada'";
-	$sql = "SELECT alumno.*, calificaciones.promedioF FROM calificaciones INNER JOIN alumno ON alumno.matricula = calificaciones.alumno_matricula WHERE 
+	$sql = "SELECT alumno.*, calificaciones.promedioF FROM calificaciones INNER JOIN alumno ON alumno.matricula = calificaciones.matricula WHERE 
 	alumno.brigada = '$brigada'";
 	$result = mysql_query($sql);
 	$alumnos = array();
@@ -360,8 +373,8 @@ function lista_brigada($brigada){
 }
 function lista_alumnosD($docente){
 	//$sql = "SELECT * FROM sflbf4.alumno WHERE alumno.brigada = ANY (SELECT idbrigada_real FROM sflbf4.brigada_real where brigada_real.docente_num_empleado = '$docente')";
-	$sql = "SELECT alumno.*, calificaciones.promedioF FROM calificaciones INNER JOIN alumno ON alumno.matricula = calificaciones.alumno_matricula WHERE 
-	alumno.brigada = ANY (SELECT idbrigada_real FROM sflbf4.brigada_real where brigada_real.docente_num_empleado = '$docente')";
+	$sql = "SELECT alumno.*, calificaciones.promedioF FROM calificaciones INNER JOIN alumno ON alumno.matricula = calificaciones.matricula WHERE 
+	alumno.brigada = ANY (SELECT idbrigada_real FROM sflbf4.brigada_real where brigada_real.empleado = '$docente')";
 	
 	$result = mysql_query($sql);
 	$alumnos = array();
@@ -373,8 +386,9 @@ function lista_alumnosD($docente){
 	return $alumnos;	
 }
 function select_calif($alumno){
-		$sql = "SELECT calificaciones.* , alumno.* FROM alumno INNER JOIN calificaciones ON calificaciones.alumno_matricula = matricula WHERE
-	alumno_matricula = '$alumno' OR matricula = '$alumno'";
+		$sql = "SELECT calificaciones.* , alumno.* FROM alumno INNER JOIN calificaciones ON calificaciones.matricula = alumno.matricula WHERE
+	calificaciones.matricula = '$alumno' ";
+	//echo $sql;
  	//$sql = "SELECT * FROM sflbf4.calificaciones, sflbf4.alumno WHERE alumno_matricula = '$alumno' , matricula = '$alumno'";
 	$result = mysql_query($sql);
 	$calif = null;
@@ -390,7 +404,7 @@ function update_calif($matricula, $datos){
 	}
 	$prom = $total / 9;
 	 $sql = "UPDATE sflbf4.calificaciones SET cal1='$datos[0]', cal2='$datos[1]', cal3='$datos[2]', cal4='$datos[3]', cal5='$datos[4]', cal6='$datos[5]',
-	 cal7='$datos[6]', cal8='$datos[7]', cal9='$datos[8]', promedioF='$prom'  WHERE alumno_matricula = '$matricula'";
+	 cal7='$datos[6]', cal8='$datos[7]', cal9='$datos[8]', promedioF='$prom'  WHERE matricula = '$matricula'";
 	 //echo "<br>".$sql;
 $result= mysql_query($sql);
         if ($result >0){
@@ -411,7 +425,7 @@ function activar_brigada($brigada){
  * FUNCIONES ALUMNO   ---INICIO---
  */
 function listar_brigadas_disponibles(){
-	$sql = "SELECT brigadas.*, docente.nombre FROM docente INNER JOIN brigadas ON brigadas.docente_num_empleado = docente.num_empleado WHERE brigadas.disponibilidad = '1'	";	
+	$sql = "SELECT brigadas.*, docente.nombre FROM docente INNER JOIN brigadas ON brigadas.empleado = docente.num_empleado WHERE brigadas.disponibilidad = '1'	";	
 	$result = mysql_query($sql);
 	$brigada = array();
 	$i = 0;
@@ -421,7 +435,32 @@ function listar_brigadas_disponibles(){
 	}
 	return $brigada;
 }
- 
+function select_alumnoB($alumno){
+	$sql = "SELECT brigadaP FROM alumno WHERE matricula = '$alumno'";
+	//echo $sql;
+	$result = mysql_query($sql);
+	$alumno = null;
+	//echo $result;
+while($row = mysql_fetch_object($result)){
+		$alumno = $row;
+}
+	return $alumno;
+}
+function select_brigada($alumno){
+	$brigada;
+	foreach ($alumno as $key => $value) {
+		$brigada = $value;
+	}
+	$sql = "SELECT * FROM sflbf4.brigadas WHERE idbrigadas = '$brigada'";
+	//echo $sql;
+	$result = mysql_query($sql);
+	$brigada = null;
+	//echo $result;
+while($row = mysql_fetch_object($result)){
+		$brigada = $row;
+}
+	return $brigada;
+}
  
  
  

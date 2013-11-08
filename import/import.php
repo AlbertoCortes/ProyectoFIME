@@ -31,11 +31,11 @@ function import_mysql($archivo){
 	}
 }
 function import_calif(){
-	$sql = "INSERT INTO sflbf4.calificaciones(alumno_matricula) SELECT matricula FROM sflbf4.alumno";
+	$sql = "INSERT INTO sflbf4.calificaciones(matricula) SELECT matricula FROM sflbf4.alumno";
 	$result = mysql_query($sql);
 }
 function import_asist(){
-	$sql = "INSERT INTO sflbf4.asistencia(alumno_matricula) SELECT matricula FROM sflbf4.alumno";
+	$sql = "INSERT INTO sflbf4.asistencia(matricula) SELECT matricula FROM sflbf4.alumno";
 	$result = mysql_query($sql);
 }
 import_mysql($archivo);

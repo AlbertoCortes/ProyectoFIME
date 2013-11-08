@@ -312,6 +312,9 @@ function form_filter_brigada_real(){
 	echo "</br></br>";
 	echo "</form>";
 }
+function form_filter_historial(){
+	
+}
 //new_docente();
 //new_alumno();
 //new_brigada();
@@ -499,7 +502,7 @@ function calificarV(){
 	echo "<tr><th>Practica #7:</th><td><input type='text' name='c7' value='".$calif->cal7."' maxlength='3' onkeypress='javascript:return validarNro(event)'</td></tr>";
 	echo "<tr><th>Practica #8:</th><td><input type='text' name='c8' value='".$calif->cal8."' maxlength='3' onkeypress='javascript:return validarNro(event)'</td></tr>";
 	echo "<tr><th>Practica #9:</th><td><input type='text' name='c9' value='".$calif->cal9."' maxlength='3' onkeypress='javascript:return validarNro(event)'</td></tr>";
-	echo "<input type='hidden' name ='alumno' value='".$calif->alumno_matricula."''>";?>
+	echo "<input type='hidden' name ='alumno' value='".$calif->matricula."''>";?>
 	
 	<tr><td colspan='2'><center><input type='submit' value='Subir calificaciones'>   <input type='button' name='cancelar' value='Cancelar' onClick = "self.location.href='javascript:history.back(1)'"></center></td>
 	<?php
@@ -544,6 +547,20 @@ function lista($alumnos, $brigada){
 	echo "<tr><th>Brigada Oficial:</th><td>".$alumno->brigada."</td></tr>";
 	echo "<tr><td colspan='2'><center><form action='alumno_modif_email.php'><input type = 'submit' value = 'Cambiar E-mail'></center></td></tr>";
 }
+ function prox($brigada){
+if (empty($brigada)){
+	echo "<table>";
+	echo "<br /><br /><h2>Proxima clase...</h2><br />";
+	echo "<br /><br /><h2>No estas inscrito en alguna brigada para esta practica</h2><br />";
+	echo "</table>";}
+else{
+ 	echo "<table>";
+	echo "<br /><br /><h2>Proxima clase...</h2><br />";
+	echo "<tr><th width='100px'>Brigada:</th><td>".$brigada->idbrigadas."</td></tr>";
+	echo "<tr><th>Dia:</th><td>".$brigada->dia."</td></tr>";
+	echo "<tr><th>Hora:</th><td>".$brigada->hora."</td></tr>";
+	echo "</table>";
+ }}
 function mis_calificaciones($alumn){
 	$alumno = select_calif($alumn);
 	echo "<table>";
