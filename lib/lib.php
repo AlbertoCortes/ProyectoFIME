@@ -275,6 +275,63 @@ function buscar_brigadas_reales($arg){
 	}
 	return $brigada;
 }
+function buscar_brigadas_historial($fecha, $practica){
+	$brigada="brigada".$practica;
+	$dia="dia".$practica;
+	$hora="hora".$practica;
+	$fecha1="fecha".$practica;
+	$maestro="maestro".$practica;
+	$prac="a".$practica;
+	
+	/*$sql = "SELECT asistencia.".$brigada.", asistencia.".$dia.", asistencia.".$hora.", asistencia.".$fecha1.", asistencia.".$maestro.", docente.nombre FROM docente 
+	INNER JOIN asistencia ON asistencia.".$maestro." = 'num_empleado' WHERE
+	".$fecha1." = '$fecha' ";*/
+	$sql = "SELECT asistencia.".$brigada."=count(*), asistencia.".$fecha1.", brigadas.*, docente.* FROM brigadas INNER JOIN asistencia ON ".$brigada." = idbrigadas 
+			INNER JOIN docente ON asistencia.".$maestro." = docente.num_empleado 
+			WHERE ".$fecha1." = '$fecha'";
+	//echo $sql;
+	$result = mysql_query($sql);
+	$brigada = array();
+	$i = 0;
+	while ($row = mysql_fetch_object($result)){
+		$brigada[$i] = $row;
+		$i++;	
+	}
+	//$brigadas = array_values($brigada);
+	//$brigadas = array_unique($brigadas);
+	return $brigada;
+}
+function maestro_historial($docente){
+	$sql = "SELECT nombre FROM  docente WHERE num_empleado='$docente'";
+	$result = mysql_query($sql);
+	$docente = null;
+	while($row = mysql_fetch_object($result)){
+		$docente = $row;
+	}
+	return $docente;
+}
+
+
+
+
+function listar_brigadas_historial($fecha, $practica, $brigada){
+	$prac = "a".$practica;
+	$brig = "brigada".$practica;
+	$fec = "fecha".$practica;
+	$sql = "SELECT asistencia.matricula, asistencia.".$prac.", alumno.nombre FROM alumno INNER JOIN asistencia ON asistencia.matricula = alumno.matricula
+	WHERE ".$brig." = '$brigada' AND ".$fec." = '$fecha' ";
+	//echo $sql;
+	$result = mysql_query($sql);
+	$alumnos = array();
+	$i = 0;
+	while ($row = mysql_fetch_object($result)){
+		$alumnos[$i] = $row;
+		$i++;	
+	}
+	//$brigadas = array_values($brigada);
+	//$brigadas = array_unique($brigadas);
+	return $alumnos;
+}
 /*
  * BUSQUEDAS DE ADMINISTRADOR   ---FIN--- 
  */

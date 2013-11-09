@@ -42,6 +42,24 @@ function listar_practicas(){
 	$practicas = listar_practicasL();
 	practicas($practicas);
 }
+function historial(){
+	$fecha = $_POST['fecha'];
+	$practica = $_POST['practica'];
+//	echo $fecha;
+	//echo $practica;
+	echo "<h2>Brigadas que se realizaron el dia ".$fecha." y en la practica #".$practica.":</h2><br /><br />";
+	$brigada =  buscar_brigadas_historial($fecha, $practica);
+	lista_historial($brigada, $practica);
+}
+function historial_asistencia(){
+	$fecha = $_POST['fecha'];
+	$practica = $_POST['practica'];
+	$brigada = $_POST['brigada'];
+	//echo "<h2>Brigadas que se realizaron el dia ".$fecha." y en la practica #".$practica.":</h2><br /><br />";
+	$alumnos = listar_brigadas_historial($fecha, $practica, $brigada);
+	//print_r($alumnos);
+	lista_asistencia_historial($alumnos , $practica);
+}
 //docentes();
 //alumnos();
 //brigadas();

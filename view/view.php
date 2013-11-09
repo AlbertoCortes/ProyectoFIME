@@ -313,7 +313,107 @@ function form_filter_brigada_real(){
 	echo "</form>";
 }
 function form_filter_historial(){
-	
+	echo "<form action='../admin/admin_brigadas_historial_search.php' method='post'>";
+	echo "<table>";
+	echo"<tr><th>Practica realizada:</th><td><select name='practica'>";
+	for($h=1; $h<=9; $h++){
+		switch ($h) {
+			case "01": $practica = 1; break;
+			case "02": $practica = 2; break;
+			case "03": $practica = 3; break;
+			case "04": $practica = 4; break;
+			case "05": $practica = 5; break;
+			case "06": $practica = 6; break;
+			case "07": $practica = 7; break;
+			case "08": $practica = 8; break;
+			case "09": $practica = 9; break;		
+		}
+		echo "<option value='$practica'>$practica</option>";
+	}
+	echo "</br></br>";
+	echo "</br></br>";
+	echo "<tr><th>Seleccione la fecha en la que se realizo la practica: </th><td><input type= 'date' id='fecha' name='fecha'></td></tr>"; 
+	echo "<tr><td colspan='2'><center><input type= 'submit'  value='BUSCAR' ><center></td></tr>"; 
+	echo "</br></br>";
+	echo "</form>";
+}
+
+function lista_historial($brigadas, $practica){
+	$fecha = "fecha".$practica;
+	//print_r($brigadas);
+	///array_unique($brigadas);
+//	if (empty($brigadas))echo "vacio";
+	//print_r($brigadas);
+	function returnDOC($docente){
+		foreach ($docente as $key => $value) {
+			$doc =  "".$value->nombre."";
+		}
+		return $doc;
+	}
+	echo "<table border=1>";
+	echo "<tr>";
+	echo "<th>Brigada</th>";
+	echo "<th>Maestro</th>";
+	echo "<th>Dia</th>";
+	echo "<th>Hora</th>";
+	echo "<th>Fecha</th>";
+	echo "<th>Ver lista de asistencia</th>";
+	echo "</tr>";
+	foreach ($brigadas as $key => $brig) {
+	//	$doc = returnDOC(maestro_historial($brig->empleado));
+	echo "<tr>";
+	echo "<td>".$brig->idbrigadas."</td>";
+	echo "<td>".$brig->nombre."</td>";
+	echo "<td>".$brig->dia."</td>";
+	echo "<td>".$brig->hora."</td>";
+	echo "<td>".$brig->$fecha."</td>";
+	//echo "";
+//	echo "";
+	echo "<td>
+		
+		<form action='admin_brigadas_lista_historial.php' method='POST'>
+			<input type='hidden' value='".$brig->idbrigadas."' name='brigada'>
+			<input type='hidden' name = 'fecha' value=".$brig->$fecha.">
+			<input type='hidden' name = 'practica' value=".$practica.">
+			<input type='submit' value='Ver lista de asistencia'></form></td>";
+	echo"</tr>";
+}
+	echo "</table>";
+}
+function lista_asistencia_historial($alumnos, $practica){
+	$stat = "a".$practica;
+	//print_r($alumnos);
+	function asistencia($asistencia){
+		switch ($asistencia) {
+			case '0':
+				$res = "<img src='../resources/no.png' title='Falta'>";
+				return $res;
+				break;
+			case '1':
+				$res = "<img src='../resources/cau.png' title='Retardo'>";
+				return $res;
+				break;
+			case '2':
+				$res = "<img src='../resources/yes.png' title='Asistencia'>";
+				return $res;
+				break;
+		}
+	}
+	echo "<table border=1>";
+	echo "<tr>";
+	echo "<th>Matricula</th>";
+	echo "<th>Nombre</th>";
+	echo "<th>Status</th>";
+	echo "</tr>";
+	foreach ($alumnos as $key => $al) {
+	$status = asistencia($al->$stat);
+	echo "<tr>";
+	echo "<td>".$al->matricula."</td>";
+	echo "<td>".$al->nombre."</td>";
+	echo "<td>".$status."</td>";
+	echo"</tr>";
+}
+	echo "</table>";
 }
 //new_docente();
 //new_alumno();

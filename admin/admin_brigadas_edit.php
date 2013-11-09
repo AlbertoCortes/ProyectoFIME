@@ -33,7 +33,8 @@ $usuario =  $_SESSION['usuario'];
 		
 				<div id='cssmenu'>
 					<ul>
-			  			  <li class="active"><a href='admin_brigadas.php'><span>Brigadas </span></a></li>
+			  			 <li class="active"><a href='admin_brigadas.php'><span>Brigadas </span></a></li>
+			  			 <li><a href='admin_brigadas_historial.php'>Historial de Brigadas</a></li>
 			  			 <li class="last"><a href= 'admin_brigadas_new.php'><span>Nueva Brigada</span></a></li>
 					</ul>
 				</div>

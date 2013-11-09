@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("../action/reportes.php");
-require_once("../view/view.php");
+//require_once("../view/view.php");
 require_once("../login/valid.php");
 require_once("../login/validpriv.php");
 validAdmin();
@@ -27,31 +27,29 @@ $usuario =  $_SESSION['usuario'];
 				<li><a href="admin_docentes.php">Docentes</a></li>
 				<li><a href="admin_alumnos.php">Alumnos</a></li>
 				<li><a href="admin_brigadas.php">Brigadas</a></li>
-				<li><a href="admin_oficial.php">Brigadas Oficiales</a></li>
+				<li><a href="admin_oficial.php">Brigadas Oficiales</a></li>	
 			</ul>
 		</div>
 		
 				<div id='cssmenu'>
 					<ul>
-			  			   <li class="active"><a href='admin_brigadas.php'><span>Brigadas </span></a></li>
+			  			 <li class="active"><a href='admin_brigadas.php'><span>Brigadas </span></a></li>
 			  			 <li><a href='admin_brigadas_historial.php'>Historial de Brigadas</a></li>
 			  			 <li class="last"><a href= 'admin_brigadas_new.php'><span>Nueva Brigada</span></a></li>
 					</ul>
 				</div>
 		
 		<div id="contenido">
-			<h2>Lista de brigadas no oficiales disponibles en el sistema</h2>
-			<?php form_filter_brigada(); ?>
+			<h2>Resultado de la busqueda...</h2>
 			<div id="tabladocentes">
-				
+					
 				<?php
-							
-							brigadas();		
+							form_filter_historial();		
 						?>
 				
 			</div>
-						</div>
-      <!-- end .content --></div>
-  <!-- end .container --></div>
-</body>
-</html>
+		</div>
+	</div>
+	</div>
+	</body>
+	</html>
