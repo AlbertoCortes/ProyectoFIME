@@ -16,7 +16,7 @@ function validDocente(){
 	}
 }
 function validDocenteP(){
-		$user=$_SESSION['usuario'];
+	$user=$_SESSION['usuario'];
 	$privilegios = $user->privilegios;
 	//echo $privilegios;
 	if($privilegios != 3){

@@ -36,6 +36,13 @@ $usuario =  $_SESSION['usuario'];
 			  			 <li><a href="docenteP_brigadas.php"><span>Brigadas</span></a></li>
 			  			 <li><a href="docenteP_brigadas_oficiales.php"><span>Brigadas oficiales</span></a></li>
 			  			 <li><a href="docenteP_alumnos.php"><span>Mis alumnos</span></a></li>
+
+
+			  			 <li class="active"><a href='#'><span>Dar de alta almnos</span></a></li>
+			  			 <li><a href="#"><span>Dar de baja alumnos</span></a></li>
+			  			 <li><a href="#"><span>Reasignar alumnos</span></a></li>
+			  			 <li><a href="#"s><span>Historial de birgadas</span></a></li>
+
 					</ul>
 				</div>
 		
