@@ -583,6 +583,31 @@ function lista_brigada_oficialVP($alumno){
 }
 function calificarV(){
 	$calif = select_calif($_POST['id']);
+	$asist = select_asistencias($_POST['id']);
+	function count_asist($asistencias){
+		$status = array("a","r","f");
+		$status["a"]=0;
+		$status["r"]=0;
+		$status["f"]=0;
+		foreach ($asistencias as $key => $asist) {
+			switch ($asist) {
+				case '0':
+					//$f++;
+					$status["f"]++;
+					break;
+				case '1':
+					//$r++;
+					$status["r"]++;
+					break;
+				case '2':
+					//$a++;
+					$status["a"]++;
+					break;			
+					}
+					return $status;
+		}}
+	$status = count_asist($asist);
+		
 	echo "<table>";
 	echo "<tr><th>Matricula:</th><td>".$calif->matricula."</td>";
 	echo "<tr><th>Nombre:</th><td>".$calif->nombre."</td>";
@@ -590,6 +615,17 @@ function calificarV(){
 	echo "<tr><th>Plan:</th><td>".$calif->plan."</td>";
 	echo "<tr><th>Promedio Final:</th><td>".$calif->promedioF."</td>";
 	echo "</table>";
+	
+	echo "<br />";	
+	echo "<table id='asist'>";
+	echo "<tr><th width: '300px'>Status de asistencia del alumno:</th><td></td>";
+	echo "<tr ><th width: '300px'>Asistencias:</th><td width: '300px'>".$status['a']."</td>";
+	echo "<tr><th width: '300px'>Retardos:</th><td>".$status['r']."</td>";
+	echo "<tr><th width: '300px'>Faltas:</th><td>".$status['f']."</td>";
+	echo "</table>";
+	
+	
+	
 	echo "<br />";
 	echo "<table>";
 	echo "<form action='../update/calificar.php' method='POST'>";

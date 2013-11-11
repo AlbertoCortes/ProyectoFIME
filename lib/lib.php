@@ -237,7 +237,7 @@ function buscar_alumnos_docente($arg, $docente){
 	//$sql = "SELECT * FROM alumno WHERE matricula = '$arg' OR nombre = '$arg' OR email = '$arg' OR brigada = '$arg'";
 	//$sql = "SELECT alumno.*, calificaciones.promedioF FROM calificaciones INNER JOIN alumno ON alumno.matricula = calificaciones.alumno_matricula WHERE ";
 	$sql = "SELECT alumno.*, calificaciones.promedioF FROM calificaciones INNER JOIN alumno ON alumno.matricula = calificaciones.matricula WHERE 
- brigada = ANY(SELECT idbrigada_real FROM brigada_real WHERE brigada_real.empleado =  '$docente') AND matricula = '$arg'";
+ brigada = ANY(SELECT idbrigada_real FROM brigada_real WHERE brigada_real.empleado =  '$docente') AND alumno.matricula = '$arg'";
 	$result = mysql_query($sql);
 	//echo $sql;
 	$alumno = array();
@@ -453,6 +453,15 @@ function select_calif($alumno){
 		$calif = $row;
 	}
 	return $calif;
+}
+function select_asistencias($alumno){
+	$sql = "SELECT a1, a2, a3, a4, a5, a6, a7, a8, a9 FROM asistencia WHERE matricula = '$alumno'";
+	$result = mysql_query($sql);
+	$asist = null;
+	while($row = mysql_fetch_object($result)){
+		$asist = $row;
+	}
+	return $asist;
 }
 function update_calif($matricula, $datos){
 	$total = 0;
