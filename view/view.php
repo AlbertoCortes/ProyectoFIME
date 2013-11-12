@@ -176,6 +176,60 @@ function lista_alumnos($alumnos){
 }
 	echo "</table>";
 }
+function lista_alumnos_reasig($alumnos, $practica){
+	$brigada = "brigada".$practica;
+	$status = "a".$practica;
+	//$stat = "Pendiente";
+	function status($status)
+	{
+		$stat;
+		switch($status){
+	case'0':
+	$stat = "Falta";
+		return $stat;
+		break;
+	case'1':
+	$stat = "Retardo";
+		return $stat;
+		break;
+	case'2':
+	$stat = "Asistencia";
+		return $stat;
+		break;
+	case '':
+	$stat = "Pendiente";
+		return $stat;
+		break;
+	}
+	
+	}
+	echo "<table border=1>";	
+	echo "<tr>";
+	echo "<th>Matricula</th>";
+	echo "<th>Nombre</th>";
+	echo "<th>Clase Inscrita</th>";
+    echo "<th>Status</th>";
+    //echo "<th>Plan</th>";
+	//echo "<th>Password</th>";
+	//echo "<th>Modificar</th>";
+	echo "<th>Reasignar Grupo</th>";
+	echo "</tr>";
+	foreach ($alumnos as $key => $alum) {
+		$stat = status($alum->$status);
+	echo "<tr>";
+	echo "<td>".$alum->matricula."</td>";
+	echo "<td>".$alum->nombre."</td>";
+	echo "<td>".$alum->$brigada."</td>";
+    echo "<td>".$stat."</td>";
+    //echo "<td>".$alum->plan."</td>";
+	//echo "<td>".$alum->pass."</td>";
+	//echo "<td>"."<a href=../update/view/view.php?id=".$alum->matricula.">Editar</a></td> ";
+	//echo "<td><form name='modificar' action='../admin/admin_alumnos_edit.php' method='POST'><input type='hidden' value='".$alum->matricula."' name='id'><input type='submit' value='Modificar'></form></td>";
+	echo "<td><form action='docenteP_alumnos_reasig_reasig.php' method='POST'><input type='hidden' value='".$alum->matricula."' name='id'><input type='submit' value='Reasignar grupo'></form></td>";
+	echo"</tr>";
+}
+	echo "</table>";
+}
 function lista_brigadas($brigadas){
 		function check($disp){
 		if($disp == 1){
@@ -288,10 +342,27 @@ function form_filter_alumno_docente(){
 	echo "</br></br>";
 	echo "</form>";
 }
-function form_filter_alumno_docenteP(){
-	echo "<form action='../docenteP/docenteP_alumnos_search.php' method='post'>";
+function form_filter_alumnoR_docenteP(){
+	echo "<form action='../docenteP/docenteP_alumnos_reasig_search.php' method='post'>";
 	echo "</br></br>";
-	echo "Buscar alumno por matricula: <input type= 'text' id='info' name='info'>"; 
+	echo"<tr><th>Practica correspondiente:</th><td><select name='practica'>";
+	for($h=1; $h<=9; $h++){
+		switch ($h) {
+			case "01": $practica = 1; break;
+			case "02": $practica = 2; break;
+			case "03": $practica = 3; break;
+			case "04": $practica = 4; break;
+			case "05": $practica = 5; break;
+			case "06": $practica = 6; break;
+			case "07": $practica = 7; break;
+			case "08": $practica = 8; break;
+			case "09": $practica = 9; break;		
+		}
+		echo "<option value='$practica'>$practica</option>";
+	}
+	echo "</br></br>";
+	echo "</br></br>";
+	echo "Matricula: <input type= 'text' id='info' name='info'>"; 
 	echo "<input type= 'submit'  value='BUSCAR' >"; 
 	echo "</br></br>";
 	echo "</form>";
@@ -337,8 +408,33 @@ function form_filter_historial(){
 	echo "</br></br>";
 	echo "</form>";
 }
+function form_filter_historialD(){
+	echo "<form action='../docenteP/docenteP_brigadas_historial_search.php' method='post'>";
+	echo "<table>";
+	echo"<tr><th>Practica realizada:</th><td><select name='practica'>";
+	for($h=1; $h<=9; $h++){
+		switch ($h) {
+			case "01": $practica = 1; break;
+			case "02": $practica = 2; break;
+			case "03": $practica = 3; break;
+			case "04": $practica = 4; break;
+			case "05": $practica = 5; break;
+			case "06": $practica = 6; break;
+			case "07": $practica = 7; break;
+			case "08": $practica = 8; break;
+			case "09": $practica = 9; break;		
+		}
+		echo "<option value='$practica'>$practica</option>";
+	}
+	echo "</br></br>";
+	echo "</br></br>";
+	echo "<tr><th>Seleccione la fecha en la que se realizo la practica: </th><td><input type= 'date' id='fecha' name='fecha'></td></tr>"; 
+	echo "<tr><td colspan='2'><center><input type= 'submit'  value='BUSCAR' ><center></td></tr>"; 
+	echo "</br></br>";
+	echo "</form>";
+}
 
-function lista_historial($brigadas, $practica){
+function lista_historial($brigadas, $practica, $user){
 	$fecha = "fecha".$practica;
 	//print_r($brigadas);
 	///array_unique($brigadas);
@@ -349,6 +445,13 @@ function lista_historial($brigadas, $practica){
 			$doc =  "".$value->nombre."";
 		}
 		return $doc;
+	}
+	switch ($user->privilegios) {
+		case '2':
+			$dir = "admin_brigadas_lista_historial.php";
+			break;
+		case '3':
+			$dir = "docenteP_brigadas_lista_historial.php";
 	}
 	echo "<table border=1>";
 	echo "<tr>";
@@ -371,7 +474,7 @@ function lista_historial($brigadas, $practica){
 //	echo "";
 	echo "<td>
 		
-		<form action='admin_brigadas_lista_historial.php' method='POST'>
+		<form action='".$dir."' method='POST'>
 			<input type='hidden' value='".$brig->idbrigadas."' name='brigada'>
 			<input type='hidden' name = 'fecha' value=".$brig->$fecha.">
 			<input type='hidden' name = 'practica' value=".$practica.">
@@ -754,6 +857,35 @@ function brigadas_disponibles_alumno($brigadas){
 }
 	echo "</table>";
 	echo "<br />";
+	echo "<center><input type='submit' value='inscribir'></center>";
+}
+function brigadas_disponibles_reinscribir($brigadas, $alumno){
+	echo $alumno;
+	echo "<table border=1>";
+	echo "<form action='../action/reinscribir.php' method='POST'>";
+	echo "<tr>";
+	echo "<th>Brigada</th>";
+	echo "<th>Dia</th>";
+	echo "<th>Hora</th>";
+	echo "<th>Cupo</th>";
+	echo "<th>Maestro Encargado</th>";
+	echo "<th>Inscribir</th>";
+	echo "</tr>";
+	foreach ($brigadas as $key => $brig) {
+	echo "<tr>";
+	echo "<td>".$brig->idbrigadas."</td>";
+	echo "<td>".$brig->dia."</td>";
+	echo "<td>".$brig->hora."</td>";
+	echo "<td>".$brig->cupo."</th>";
+	echo "<td>".$brig->nombre."</th>";
+	
+	//echo "<td><form action='../delete/del_brigada.php' method='POST'><input type='hidden' value='".$brig->idbrigadas."' name='id'><input type='submit' value='Eliminar'></form></td>";
+	echo "<td><input type='radio' value='".$brig->idbrigadas."' name='brig'><input type='hidden' name='alumno' value='".$brig->idbrigadas."'</td>";
+	echo"</tr>";
+}
+	echo "</table>";
+	echo "<br />";
+	echo "<input type='hidden' name='alumno' value= ".$alumno.">";
 	echo "<center><input type='submit' value='inscribir'></center>";
 }
 

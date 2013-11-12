@@ -4,7 +4,7 @@ require_once("../action/reportes.php");
 //require_once("../view/view.php");
 require_once("../login/valid.php");
 require_once("../login/validpriv.php");
-validAdmin();
+validDocenteP();
 $usuario =  $_SESSION['usuario'];
 
 ?>

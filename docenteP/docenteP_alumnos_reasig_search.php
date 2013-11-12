@@ -4,7 +4,7 @@ require_once("../action/reportes.php");
 //require_once("../view/view.php");
 require_once("../login/valid.php");
 require_once("../login/validpriv.php");
-validAdmin();
+validDocenteP();
 $usuario =  $_SESSION['usuario'];
 
 ?>
@@ -19,7 +19,7 @@ $usuario =  $_SESSION['usuario'];
 <body>
 
 <div class="container">
-	<div id="top-bar"> <div id="bar-text">Sistema de Inscripciones -Administrador- (Brigadas)</div><div id="botonsalir">Bienvenido,  <?php echo $usuario->nombre; ?>   <a href="#" title="Editar mis datos" class="Bca">  Editar  </a>    <a href="../login/logout.php" title="Salir" class="BcaE">  Salir  </a></div></div>				
+	<div id="top-bar"> <div id="bar-text">Sistema de Inscripciones -Administrador- (Alumnos)</div><div id="botonsalir">Bienvenido,  <?php echo $usuario->nombre; ?>   <a href="#" title="Editar mis datos" class="Bca">  Editar  </a>    <a href="../login/logout.php" title="Salir" class="BcaE">  Salir  </a></div></div>				
 	<div class="content">
 		<div id="divnav"> 
 			<ul id="nav">
@@ -33,9 +33,11 @@ $usuario =  $_SESSION['usuario'];
 		
 				<div id='cssmenu'>
 					<ul>
-			  			 <li class="active"><a href='admin_brigadas.php'><span>Brigadas </span></a></li>
-			  			 <li><a href='admin_brigadas_historial.php'>Historial de Brigadas</a></li>
-			  			 <li class="last"><a href= 'admin_brigadas_new.php'><span>Nueva Brigada</span></a></li>
+			  			 <li class="active"><a href='admin_alumnos.php'><span>Alumnos </span></a></li>
+			  			 <li><a href= 'admin_alumnos_new.php'><span>Nuevo Alumno</span></a></li>
+						  <li class='last'><a href='admin_alumnos_import.php'><span>Importar Alumnos</span></a></li>
+
+					</ul>
 				</div>
 		
 		<div id="contenido">
@@ -43,7 +45,7 @@ $usuario =  $_SESSION['usuario'];
 			<div id="tabladocentes">
 					
 				<?php
-							historial($usuario);	
+							filtro_alumnos_reasig();		
 						?>
 				
 			</div>

@@ -4,7 +4,7 @@ require_once("../action/reportes.php");
 //require_once("../view/view.php");
 require_once("../login/valid.php");
 require_once("../login/validpriv.php");
-validAdmin();
+validDocenteP();
 $usuario =  $_SESSION['usuario'];
 
 ?>
@@ -39,11 +39,11 @@ $usuario =  $_SESSION['usuario'];
 				</div>
 		
 		<div id="contenido">
-			<h2>Resultado de la busqueda...</h2>
+			<h2>Lista de alumnos que asistieron a la brigada</h2>
 			<div id="tabladocentes">
 					
 				<?php
-							historial($usuario);	
+							historial_asistencia();
 						?>
 				
 			</div>

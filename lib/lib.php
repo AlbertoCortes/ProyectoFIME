@@ -233,6 +233,20 @@ function buscar_alumnos($arg){
 	}
 	return $alumno;
 }
+function buscar_alumnos_reasig($arg, $practica){
+	$brigada = "brigada".$practica;
+	$status = "a".$practica;
+	$sql = "SELECT alumno.matricula, alumno.nombre, asistencia.".$brigada.", asistencia.".$status." FROM asistencia INNER JOIN alumno ON alumno.matricula = asistencia.matricula WHERE alumno.matricula = '$arg' OR nombre = '$arg'";
+	echo $sql;
+	$result = mysql_query($sql);
+	$alumno = array();
+	$i = 0;
+	while ($row = mysql_fetch_object($result)){
+		$alumno[$i] = $row;
+		$i++;	
+	}
+	return $alumno;
+}
 function buscar_alumnos_docente($arg, $docente){
 	//$sql = "SELECT * FROM alumno WHERE matricula = '$arg' OR nombre = '$arg' OR email = '$arg' OR brigada = '$arg'";
 	//$sql = "SELECT alumno.*, calificaciones.promedioF FROM calificaciones INNER JOIN alumno ON alumno.matricula = calificaciones.alumno_matricula WHERE ";

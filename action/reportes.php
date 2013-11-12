@@ -28,6 +28,24 @@ function filtro_alumnos(){
 	lista_alumnos($alumno);
 }
 
+
+
+function filtro_alumnos_reasig(){
+	$arg = $_POST['info'];
+	$practica = $_POST['practica'];
+	$alumno = buscar_alumnos_reasig($arg, $practica);
+	lista_alumnos_reasig($alumno, $practica);
+	
+}
+
+function lista_brigadasA(){
+	$alumno = $_POST['id'];
+	$brigadas = listar_brigadas_disponibles();
+	brigadas_disponibles_reinscribir($brigadas, $alumno);
+}
+
+
+
 function filtro_brigadas(){
 	$arg = $_POST['info'];
 	$brigada = buscar_brigadas($arg);
@@ -42,14 +60,14 @@ function listar_practicas(){
 	$practicas = listar_practicasL();
 	practicas($practicas);
 }
-function historial(){
+function historial($user){
 	$fecha = $_POST['fecha'];
 	$practica = $_POST['practica'];
 //	echo $fecha;
 	//echo $practica;
 	echo "<h2>Brigadas que se realizaron el dia ".$fecha." y en la practica #".$practica.":</h2><br /><br />";
 	$brigada =  buscar_brigadas_historial($fecha, $practica);
-	lista_historial($brigada, $practica);
+	lista_historial($brigada, $practica, $user);
 }
 function historial_asistencia(){
 	$fecha = $_POST['fecha'];
