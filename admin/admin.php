@@ -32,13 +32,14 @@ $usuario =  $_SESSION['usuario'];
 		</div>
 		
 				<div id='cssmenu'>
+					 <img src="../resources/lfime1.png" />
 					
 					<br /><br /><br /><br /><br /><br /><br /><br />
 				</div>
 		
 			<div id="contenido">
 			<h2>BIENVENIDO AL NUEVO SISTEMA DE INSCRIPCIONES PARA EL LABORATORIO DE FISICA 4</h2><br />
-				Por favor seleccione la practica a realizar
+				<h3>Por favor seleccione la practica a realizar durante la semana </h3><br /><br />
 			<?php
 							
 							listar_practicas();		

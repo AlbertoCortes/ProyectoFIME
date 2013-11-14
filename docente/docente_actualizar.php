@@ -20,18 +20,9 @@ $usuario =  $_SESSION['usuario'];
 <div class="container">
 	<div id="top-bar"> <div id="bar-text">Sistema de Inscripciones -Docente-</div><div id="botonsalir">Bienvenido,  <?php echo $usuario->nombre; ?>  <a href="docente_modif_pass.php" title="Cambiar mi password" class="Bca">  Editar  </a>    <a href="../login/logout.php" title="Salir" class="BcaE">  Salir  </a></div></div>				
 	<div class="content">
-		<!--<div id="divnav"> 
-			<ul id="nav">
-				<li><a href="admin_docentes.php">Docentes</a></li>
-				<li><a href="admin_alumnos.php">Alumnos</a></li>
-				<li><a href="admin_brigadas.php">Brigadas</a></li>
-				<li><a href="admin_oficial.php">Brigadas Oficiales</a></li>
-				<li><a href="admin_avisos.php">Avisos</a></li>						
-			</ul>
-		</div>-->
-		
 				<div id='cssmenu'>
-					<ul>
+					<img src="../resources/lfime.png" />
+					<ul><br />
 			  			 <li class="active"><a href='docente.php'><span>Inicio</span></a></li>
 			  			 <li><a href="docente_brigadas.php"><span>Brigadas</span></a></li>
 			  			 <li><a href="docente_brigadas_oficiales.php"><span>Brigadas oficiales</span></a></li>
@@ -40,7 +31,7 @@ $usuario =  $_SESSION['usuario'];
 				</div>
 		
 			<div id="contenido">
-			<h2>BIENVENIDO AL NUEVO SISTEMA DE INSCRIPCIONES PARA EL LABORATORIO DE FISICA 4</h2><br />
+			<h2>Modificar mis datos</h2><br />
 			<div id="tabladocentes">
 				
 				<?php

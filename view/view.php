@@ -360,9 +360,19 @@ function form_filter_alumnoR_docenteP(){
 		}
 		echo "<option value='$practica'>$practica</option>";
 	}
-	echo "</br></br>";
+	
+	echo "</select>";
 	echo "</br></br>";
 	echo "Matricula: <input type= 'text' id='info' name='info'>"; 
+	echo "<input type= 'submit'  value='BUSCAR' >"; 
+	echo "</br></br>";
+	echo "</form>";
+}
+function form_filter_alumno_docenteP(){
+	echo "<form action='../docenteP/docenteP_alumnos_search.php' method='post'>";
+	echo "</br></br>";
+	//echo "</br></br>";
+	echo "Buscar alumno por Matricula: <input type= 'text' id='info' name='info'>"; 
 	echo "<input type= 'submit'  value='BUSCAR' >"; 
 	echo "</br></br>";
 	echo "</form>";
@@ -860,7 +870,7 @@ function brigadas_disponibles_alumno($brigadas){
 	echo "<center><input type='submit' value='inscribir'></center>";
 }
 function brigadas_disponibles_reinscribir($brigadas, $alumno){
-	echo $alumno;
+	//echo $alumno;
 	echo "<table border=1>";
 	echo "<form action='../action/reinscribir.php' method='POST'>";
 	echo "<tr>";

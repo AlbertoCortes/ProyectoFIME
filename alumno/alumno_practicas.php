@@ -31,7 +31,9 @@ $usuario =  $_SESSION['usuario'];
 		</div>-->
 		
 				<div id='cssmenu'>
+					<center><img src="../resources/lfime1.png"></center>
 					<ul>
+						<br />
 			  			 <li class="active"><a href='alumno.php'><span>Inicio</span></a></li>
 			  			 <li><a href="alumno_calificaciones.php"><span>Mis calificaciones</span></a></li>
 			  			 <li><a href="alumno_practicas.php"><span>Practicas </span></a></li>
@@ -39,7 +41,7 @@ $usuario =  $_SESSION['usuario'];
 				</div>
 		
 			<div id="contenido">
-			<h2>BIENVENIDO AL NUEVO SISTEMA DE INSCRIPCIONES PARA EL LABORATORIO DE FISICA 4</h2><br />
+			<h2>Lista de practicas a realizar durante el semestre</h2><br />
 			<div id="tabladocentes">
 				
 				<?php

@@ -31,7 +31,9 @@ $usuario =  $_SESSION['usuario'];
 		</div>-->
 		
 				<div id='cssmenu'>
+					<center><img src="../resources/lfime1.png"></center>
 					<ul>
+						<br />
 			  			 <li class="active"><a href='alumno.php'><span>Inicio</span></a></li>
 			  			 <li><a href="alumno_calificaciones.php"><span>Mis calificaciones</span></a></li>
 			  			 <li><a href="alumno_practicas.php"><span>Practicas </span></a></li>

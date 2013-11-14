@@ -237,7 +237,7 @@ function buscar_alumnos_reasig($arg, $practica){
 	$brigada = "brigada".$practica;
 	$status = "a".$practica;
 	$sql = "SELECT alumno.matricula, alumno.nombre, asistencia.".$brigada.", asistencia.".$status." FROM asistencia INNER JOIN alumno ON alumno.matricula = asistencia.matricula WHERE alumno.matricula = '$arg' OR nombre = '$arg'";
-	echo $sql;
+	//echo $sql;
 	$result = mysql_query($sql);
 	$alumno = array();
 	$i = 0;

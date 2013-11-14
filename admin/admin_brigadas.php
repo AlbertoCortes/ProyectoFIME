@@ -31,8 +31,8 @@ $usuario =  $_SESSION['usuario'];
 			</ul>
 		</div>
 		
-				<div id='cssmenu'>
-					<ul>
+				<div id='cssmenu'> <img src="../resources/lfime1.png" />
+					<ul><br />
 			  			   <li class="active"><a href='admin_brigadas.php'><span>Brigadas </span></a></li>
 			  			 <li><a href='admin_brigadas_historial.php'>Historial de Brigadas</a></li>
 			  			 <li class="last"><a href= 'admin_brigadas_new.php'><span>Nueva Brigada</span></a></li>
