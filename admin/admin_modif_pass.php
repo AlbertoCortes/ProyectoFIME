@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../view/view.php");
+require_once("../update/view.php");
 require_once("../login/valid.php");
 require_once("../login/validpriv.php");
 validAdmin();
@@ -21,29 +21,26 @@ $usuario =  $_SESSION['usuario'];
 	<div id="top-bar"> <div id="bar-text">Sistema de Inscripciones -Administrador- (Brigadas)</div><div id="botonsalir">Bienvenido,  <?php echo $usuario->nombre; ?>   <a href="admin_modif_pass.php" title="Editar mis contraseña" class="Bca">  Editar  </a>    <a href="../login/logout.php" title="Salir" class="BcaE">  Salir  </a></div></div>					<div class="content">
 		<div id="divnav"> 
 			<ul id="nav">
-				<li><a href="admin.php"> Inicio </a></li>	
+			<li><a href="admin.php"> Inicio </a></li>	
 				<li><a href="admin_docentes.php">Docentes</a></li>
 				<li><a href="admin_alumnos.php">Alumnos</a></li>
 				<li><a href="admin_brigadas.php">Brigadas</a></li>
-				<li><a href="admin_oficial.php">Brigadas Oficiales</a></li>			
+				<li><a href="admin_oficial.php">Brigadas Oficiales</a></li>		
 			</ul>
 		</div>
 		
 				<div id='cssmenu'> <img src="../resources/lfime1.png" />
-					<ul><br />
-			 			  <li class="active"><a href='admin_docentes.php'><span>Docentes </span></a></li>
-			  			 <li class="last"><a href= 'admin_docentes_new.php'><span>Nuevo Docente</span></a></li>
-					</ul>
+					
 				</div>
 		
 		<div id="contenido">
-			<h2> Ingresar nuevo docente al sistema</h2>
-						<?php
-							new_docente();		
-						?>
+			<h2>Cambiar Contraseña</h2>
+			<?php
+			modificar_contraAdmin($usuario);
+			?>
 			
-		</div>
-	</div>
-	</div>
-	</body>
-	</html>
+						</div>
+      <!-- end .content --></div>
+  <!-- end .container --></div>
+</body>
+</html>

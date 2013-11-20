@@ -39,7 +39,7 @@ function validar($brigada, $usuario){
 	$result = mysql_query($sql);
 	$valor = mysql_fetch_array($result);
 	$cupo = $valor['0'];
-	echo $cupo;
+//	echo $cupo;
 	if ($cupo == 0){
 		echo'<script type="text/javascript">alert("ERROR. La brigada ya esta llena, porfavor elija otra");window.location.href="javascript:window.history.back()";</script>';
 	}

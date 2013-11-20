@@ -4,14 +4,6 @@ require_once("../login/valid.php");
 //require_once("../login/validpriv.php");
 //validDocenteP();
 $usuario =  $_SESSION['usuario'];
-switch ($usuario->privilegios) {
-	case '1':
-		$dir = "../docente/docente_brigadas.php";
-		break;
-	case '3':
-		$dir = "../docenteP/docenteP_brigadas.php";
-		break;
-}
 //require_once("../action/funciones_docente.php");
 require_once("../lib/lib.php");
 $pr = select_admin();
@@ -48,7 +40,7 @@ $hora = $_POST['hora'];//echo $hora;
 $brigada = $_POST['brigada'];//echo $brigada;
 
 function captura($alumno, $status, $docente, $dia, $hora, $brigada, $practica){
-	date_default_timezone_set("America/Mexico_city");
+	date_default_timezone_set("America/Mexico_city");	
 	$fecha = date("Y-m-d");
 	//echo $fecha;
 	$pract = "a".$practica;
@@ -71,15 +63,10 @@ function status($alumno){
 	$sql = "UPDATE sflbf4.alumno SET status='0', brigadaP=NULL  WHERE matricula = '$alumno';";
 	$result = mysql_query($sql);
 }
-function reset_brig($brig){
-	$sql = "UPDATE sflbf4.brigadas SET cupo='20', disponibilidad='0', status='1'  WHERE idbrigadas = '$brig';";
-	$result = mysql_query($sql);
-}
 for ($i = 0 ; $i < count($alumno); $i ++){
 	captura($alumno[$i], $status[$i], $docente, $dia, $hora, $brigada,$pra);
 	status($alumno[$i]);
 }
-	reset_brig($brigada);
-		echo'<script type="text/javascript">alert("Las asistencias se han subido correctamente");window.location.href="'.$dir.' ";</script>';
+		echo'<script type="text/javascript">alert("Las asistencias se han subido correctamente");window.location.href="../docenteP/docenteP_brigadas.php";</script>';
 
 ?>

@@ -587,13 +587,16 @@ return $res;
 	echo "</table>";
 }
 function mis_brigadasVP($brigadas){
-	function check($disp){
-		if($disp == 1){
+	function check($disp, $status){
+		if($disp == 1 AND $status == 0){
 			$res=  "<img src='../resources/yes.png'>";
-		}
-elseif($disp == 0){
-	$res=  "<img src='../resources/no.png'>";
+		}elseif($disp == 1 AND $status == 1){
+	$res=  "<img src='../resources/yes.png'>";
 }
+elseif($disp == 0 AND $status == 0){
+	$res=  "<img src='../resources/no.png'>";
+}elseif($disp == 0 AND $status == 1){
+	$res=  "Clase Terminada";}
 return $res;
 	}
 	echo "<table border=1>";
@@ -605,7 +608,7 @@ return $res;
 	echo "<th>Disponibilidad</th>";
 	echo "<th>Iniciar Clase</th></tr>";
 	foreach ($brigadas as $key => $brig) {
-		$disp=check($brig->disponibilidad);
+		$disp=check($brig->disponibilidad, $brig->status);
 		echo "<tr>";
 		echo "<td>".$brig->idbrigadas."</td>";
 		echo "<td>".$brig->dia."</td>";

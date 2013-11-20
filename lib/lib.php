@@ -264,7 +264,7 @@ function buscar_alumnos_docente($arg, $docente){
 }
 function buscar_brigadas($arg){
 	//$sql = "SELECT * FROM brigadas WHERE idbrigadas = '$arg' OR dia = '$arg' OR hora = '$arg' OR salon = '$arg' OR cupo = '$arg' OR docente_num_empleado = '$arg'";
-	$sql = "SELECT brigadas.idbrigadas, brigadas.dia, brigadas.hora, brigadas.cupo, docente.nombre FROM docente INNER JOIN brigadas ON brigadas.empleado = num_empleado WHERE 
+	$sql = "SELECT brigadas.idbrigadas, brigadas.dia, brigadas.hora, brigadas.cupo, brigadas.disponibilidad, docente.nombre FROM docente INNER JOIN brigadas ON brigadas.empleado = num_empleado WHERE 
 	idbrigadas = '$arg' OR dia = '$arg' OR hora = '$arg' OR salon = '$arg' OR cupo = '$arg' OR empleado = '$arg' OR docente.nombre = '$arg'
 	ORDER BY idbrigadas DESC";
 	$result = mysql_query($sql);
@@ -300,7 +300,7 @@ function buscar_brigadas_historial($fecha, $practica){
 	/*$sql = "SELECT asistencia.".$brigada.", asistencia.".$dia.", asistencia.".$hora.", asistencia.".$fecha1.", asistencia.".$maestro.", docente.nombre FROM docente 
 	INNER JOIN asistencia ON asistencia.".$maestro." = 'num_empleado' WHERE
 	".$fecha1." = '$fecha' ";*/
-	$sql = "SELECT asistencia.".$brigada."=count(*), asistencia.".$fecha1.", brigadas.*, docente.* FROM brigadas INNER JOIN asistencia ON ".$brigada." = idbrigadas 
+	$sql = "SELECT Distinct asistencia.".$brigada.", asistencia.".$fecha1.", brigadas.*, docente.* FROM brigadas INNER JOIN asistencia ON ".$brigada." = idbrigadas 
 			INNER JOIN docente ON asistencia.".$maestro." = docente.num_empleado 
 			WHERE ".$fecha1." = '$fecha'";
 	//echo $sql;

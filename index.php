@@ -22,6 +22,7 @@
 				<center><table>
 					<form id="log" action="login/loginvalidate.php" method="POST">
 						<h2>Introduce tu matricula y tu contraseña para iniciar</h2>
+						
 						<br />
 						
 						<tr><td>Usuario:</td><td><input type="text" name="usuario" /></td></tr>

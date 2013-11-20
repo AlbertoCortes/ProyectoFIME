@@ -9,6 +9,15 @@ function seleccionar_docente($num_empleado){
 	}
 	return $docente;
 }
+function seleccionar_admin($arg){
+	$sql = "SELECT * FROM sflbf4.administrador WHERE idadministrador = '$arg'";
+	$result = mysql_query($sql);
+	$admin = null;
+	while($row = mysql_fetch_object($result)){
+		$admin = $row;
+	}
+	return $admin;
+}
 function select_docente($num_empleado){
 	$sql = "SELECT * FROM sflbf4.docente WHERE num_empleado = '$num_empleado'";
 	$result = mysql_query($sql);
@@ -52,6 +61,19 @@ $result= mysql_query($sql);
         if ($result >0){
                 //echo "<script type='text/javascript'>alert('Se ha actualizado la informacion');</script>";  
 				echo'<script type="text/javascript">alert("Se ha actualizado la informacion satisfactoriamente");window.location.href="../admin/admin_docentes.php";</script>';
+				//header('Location: ../admin/admin_docentes.php');
+        }
+        else {
+        		echo'<script type="text/javascript">alert("ERROR. Existe una inconsistencia en la informacion");window.location.href="javascript:window.history.back()";</script>';
+        }  
+}
+function update_contraAdmin($admin, $datos){
+	 $sql = "UPDATE sflbf4.administrador SET pass='$datos' WHERE idadministrador = '$admin'";
+	 //echo "<br>".$sql;
+$result= mysql_query($sql);
+        if ($result >0){
+                //echo "<script type='text/javascript'>alert('Se ha actualizado la informacion');</script>";  
+				echo'<script type="text/javascript">alert("Se ha actualizado la informacion satisfactoriamente");window.location.href="javascript:window.history.back()";</script>';
 				//header('Location: ../admin/admin_docentes.php');
         }
         else {
