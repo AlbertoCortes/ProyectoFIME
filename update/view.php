@@ -10,7 +10,10 @@ function modificar_docente(){
 	echo"<tr><th>Telefono:</th><td><input type='text' name='telefono' value='".$num_docente->telefono."' maxlength='10' onkeypress='javascript:return validarNro(event)'/></td></tr>";
 	echo"<tr><th>Email:</th><td><input type='text' name='email' value='".$num_docente->email."'></td></tr>";
 	echo "<input type='hidden' name ='docente' value='".$num_docente->num_empleado."''>";
-	echo"<tr><td colspan='2'><center><input type='submit' value='Actualizar Datos'> <input type='button' name='cancelar' value='Cancelar' onClick = 'self.location.href='../main/adminIndex.php'></center></td>";
+	?>
+	<tr><td colspan='2'><center><input type='submit' value='Aceptar'>   <input type='button' name='cancelar' value='Cancelar' onClick = "self.location.href='admin_docentes.php'"></center></td>
+	<?php
+	//echo"<tr><td colspan='2'><center><input type='submit' value='Actualizar Datos'> <input type='button' name='cancelar' value='Cancelar' onClick = 'self.location.href='../main/adminIndex.php'></center></td>";
 	echo"</table>";
 }
 function modificar_mis_datos_docente($usuario){
@@ -70,7 +73,10 @@ function modificar_alumno(){
 	echo"</tr>";
 	echo"<tr><th>Email:</th><td><input type='text' name='email' value='".$matricula->email."'></td></tr>";
 	echo "<input type='hidden' name ='alumno' value='".$matricula->matricula."''>";
-	echo"<tr><td colspan='2'><center><input type='submit' value='Actualizar Datos'> <input type='button' name='cancelar' value='Cancelar' onClick = 'self.location.href='../main/adminIndex.php'></center></td>";
+	?>
+	<tr><td colspan='2'><center><input type='submit' value='Aceptar'>   <input type='button' name='cancelar' value='Cancelar' onClick = "self.location.href='admin_alumnos.php'"></center></td>
+	<?php
+	//echo"<tr><td colspan='2'><center><input type='submit' value='Actualizar Datos'> <input type='button' name='cancelar' value='Cancelar' onClick = 'self.location.href='../main/adminIndex.php'></center></td>";
 	echo"</table>";
 }
 function modificar_brigada_real(){
@@ -89,7 +95,10 @@ function modificar_brigada_real(){
 	echo"</td>";
 	echo"</tr>";
 	echo "<input type='hidden' name ='brigada' value='".$brigada->idbrigada_real."''>";
-	echo"<tr><td colspan='2'><center><input type='submit' value='Actualizar'> <input type='button' name='cancelar' value='Cancelar' onClick = 'self.location.href='../main/adminIndex.php'></center></td>";
+	?>
+	<tr><td colspan='2'><center><input type='submit' value='Aceptar'>   <input type='button' name='cancelar' value='Cancelar' onClick = "self.location.href='admin_oficial.php'"></center></td>
+	<?php
+//echo"<tr><td colspan='2'><center><input type='submit' value='Actualizar'> <input type='button' name='cancelar' value='Cancelar' onClick = 'self.location.href='../main/adminIndex.php'></center></td>";
 	echo"</table>";
 }
 
