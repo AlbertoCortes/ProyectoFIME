@@ -9,7 +9,7 @@
 
 <body>
 
-<div class="containeer">
+<div class="container">
 	<div id="top-bar"> <div>Sistema de Inscripciones Laboratorio Fisica IV -Inicio-</div></div>
 	<div class="content">
 		<h3>Iniciar Sesion</h3>
