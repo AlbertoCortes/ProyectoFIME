@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,7 +9,7 @@
 
 <body>
 
-<div class="container">
+<div class="containeer">
 	<div id="top-bar"> <div>Sistema de Inscripciones Laboratorio Fisica IV -Inicio-</div></div>
 	<div class="content">
 		<h3>Iniciar Sesion</h3>
